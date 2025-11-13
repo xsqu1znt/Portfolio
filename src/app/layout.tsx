@@ -89,8 +89,8 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html className={`${workSans.variable} ${nunito.variable} ${satoshi.variable}`} lang="en">
-            <body className={`dark antialiased`}>
+        <html lang="en">
+            <body className={`dark antialiased ${workSans.variable} ${nunito.variable} ${satoshi.variable}`}>
                 <ReactLenis root options={{ lerp: 0.2 }} />
                 <Navbar />
                 {children}

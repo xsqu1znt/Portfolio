@@ -48,7 +48,7 @@ export default function Navbar() {
                 <div
                     className={cn(
                         "group absolute top-4 left-4 flex h-[50px] items-center justify-between rounded-md border border-white/5 bg-white/5 px-4 py-2 backdrop-blur-xl transition-all duration-300",
-                        isFull ? "w-[calc(100vw-32px)]" : "w-48"
+                        isFull ? "w-[calc(100%-32px)]" : "w-48"
                     )}
                 >
                     {/* Logo */}

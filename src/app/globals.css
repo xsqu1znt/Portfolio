@@ -49,8 +49,28 @@ body {
     scroll-behavior: smooth;
 }
 
+/* Make the scrollbar transparent */
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+}
+
+/* Make the thumb thinner */
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    border: none;
+    height: 8px;
+}
+
 .shade-3d {
     box-shadow:
         inset 1px 1px 4px 0 rgba(255 255 255 / 0.05),
         inset -3px -3px 4px 0 rgba(0 0 0 / 0.1);
+}
+
+@layer base {
+    .section {
+        @apply flex w-full flex-col gap-10 px-4;
+    }
 }
