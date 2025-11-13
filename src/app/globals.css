@@ -1,26 +1,56 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --accent: #71b6ff;
+
+    --background-primary: #000000;
+    --foreground-primary: #eee8e0;
+    --foreground-dim: #e4e6ef80;
+    --foreground-dimmer: #eee8e015;
+
+    --icon-active: #eec997;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    --color-accent: var(--accent);
+
+    --color-background-primary: var(--background-primary);
+    --color-foreground-primary: var(--foreground-primary);
+    --color-foreground-dim: var(--foreground-dim);
+    --color-foreground-dimmer: var(--foreground-dimmer);
+
+    --color-icon-active: var(--icon-active);
+
+    --font-nunito: var(--font-nunito);
+    --font-sans: var(--font-work-sans);
+    --font-satoshi: var(--font-satoshi);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    :root {
+        --accent: #71b6ff;
+
+        --background-primary: #000000;
+        --foreground-primary: #eee8e0;
+        --foreground-dim: #e4e6ef80;
+        --foreground-dimmer: #eee8e015;
+
+        --icon-active: #eec997;
+    }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    min-width: 320px;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: var(--background-primary);
+    color: var(--foreground-primary);
+    font-family: var(--font-nunito), Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
+}
+
+.shade-3d {
+    box-shadow:
+        inset 1px 1px 4px 0 rgba(255 255 255 / 0.05),
+        inset -3px -3px 4px 0 rgba(0 0 0 / 0.1);
 }
