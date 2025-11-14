@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import ReactLenis from "lenis/react";
+import Footer from "@/components/layout/Footer";
 
 const workSans = Work_Sans({
     variable: "--font-work-sans",
@@ -94,6 +95,7 @@ export default function RootLayout({
                 <ReactLenis root options={{ lerp: 0.2 }} />
                 <Navbar />
                 {children}
+                <Footer />
             </body>
         </html>
     );

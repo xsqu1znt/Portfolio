@@ -5,7 +5,7 @@ export default function Hero() {
         <section id="top" className="mt-32 w-full px-4">
             {/* Header Typography */}
             <div className="font-satoshi flex w-full flex-col gap-3">
-                <span className="font-satoshi w-full text-4xl font-semibold">Gunique G.</span>
+                <span className="font-satoshi w-full text-4xl font-semibold">GUNIQUE G.</span>
                 <div className="@ flex w-full flex-col items-center justify-center leading-tight tracking-tighter">
                     <div className="flex w-full items-center justify-end gap-4">
                         <Image src="/icons/arrow-right.svg" alt="arrow-right" width={0} height={0} className="w-14" />

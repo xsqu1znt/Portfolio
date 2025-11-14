@@ -7,7 +7,7 @@ import { AddonServices, MainServices } from "@/constants/services";
 
 export default function Contact() {
     return (
-        <section id="services" className="section">
+        <section id="contact" className="section">
             <SectionHeader title="// CONTACT" description="Let's get your business the attention it needs." />
 
             {/* Form/Contact */}

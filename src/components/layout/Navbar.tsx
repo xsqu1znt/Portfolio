@@ -3,10 +3,13 @@
 import { useScroll } from "@/hooks/useScroll";
 import useViewportSize from "@/hooks/useViewportSize";
 import { cn } from "@/lib/utils";
+import { useLenis } from "lenis/react";
 import { ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function Navbar() {
+    const lenis = useLenis();
+
     const [isFull, setIsFull] = useState(false);
     const [menuClicked, setMenuClicked] = useState(false);
     const [menuHovered, setMenuHovered] = useState(false);
@@ -39,6 +42,10 @@ export default function Navbar() {
         if (!isMenuOpen) {
             setMenuHovered(true);
         }
+    };
+
+    const handleScrollContact = () => {
+        lenis?.scrollTo("#contact");
     };
 
     return (
@@ -105,16 +112,16 @@ export default function Navbar() {
 
                 {/* CTA/Contact */}
                 <div className={"absolute top-4 right-4 z-[-1] overflow-y-hidden"}>
-                    <a
-                        href="#contact"
+                    <button
                         className={cn(
-                            "shade-3d flex h-[50px] items-center rounded-md border border-white/5 bg-white/5 px-4 py-2.5 backdrop-blur-xl transition-all duration-300",
+                            "shade-3d flex h-[50px] items-center rounded-md border border-white/5 bg-white/5 px-4 py-2.5 backdrop-blur-xl transition-all duration-300 hover:cursor-pointer",
                             isFull && "-translate-y-16"
                         )}
+                        onClick={handleScrollContact}
                     >
                         CONTACT
                         <ChevronRight className="-mr-2 ml-1 h-6 stroke-1" />
-                    </a>
+                    </button>
                 </div>
             </header>
         </div>
