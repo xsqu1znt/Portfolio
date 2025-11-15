@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ButtonHTMLAttributes, ComponentProps, useState } from "react";
+import { ComponentProps } from "react";
 
 export type ButtonStyles = "primary" | "accent";
 export type ButtonSizes = "normal";

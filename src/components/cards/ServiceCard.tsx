@@ -1,11 +1,11 @@
 "use client";
 
-import { ServiceCardProps } from "@/types/types";
-import Button from "../ui/Button";
-import { ArrowRight, LayoutGrid } from "lucide-react";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
 import { useUserClient } from "@/hooks/useUserClient";
+import { cn } from "@/lib/utils";
+import { ServiceCardProps } from "@/types/types";
+import { ArrowRight } from "lucide-react";
+import { useState } from "react";
+import Button from "../ui/Button";
 
 function ServiceHeader({
     index,
@@ -111,7 +111,7 @@ function ServiceExtra({ extraDetails, handleContact, expanded }: ServiceCardProp
 
             {/* Contact Me Button (Replaces price/subtext area) */}
             <Button label="START A PROJECT" variant="accent" full className="mt-3" onClick={handleContact}>
-                <ArrowRight className="text-background-primary size-5" />
+                <ArrowRight className="text-background-primary size-5 stroke-[1.5px]" />
             </Button>
         </div>
     );
