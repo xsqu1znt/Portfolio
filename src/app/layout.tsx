@@ -29,7 +29,7 @@ const font_serif = localFont({
 
 const font_special = localFont({
     variable: "--font-special",
-    src: "../../public/fonts/Melodrama-Variable.ttf",
+    src: "../../public/fonts/ClashDisplay-Variable.ttf",
     display: "swap"
 });
 

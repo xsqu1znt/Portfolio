@@ -79,7 +79,7 @@ export default function Navbar() {
                 className="relative grid grid-cols-3 p-4"
                 initial={{ opacity: 0, translateY: "-200%" }}
                 animate={{ opacity: 1, translateY: 0 }}
-                transition={{ delay: 1, duration: 1, ease: [0.741, 0.002, 0.083, 0.999] }}
+                transition={{ delay: 0.75, duration: 1, ease: [0.741, 0.002, 0.083, 0.999] }}
             >
                 {/* Logo */}
                 <a href="/" className="font-sans text-2xl font-semibold">

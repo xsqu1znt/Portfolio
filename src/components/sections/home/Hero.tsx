@@ -157,14 +157,14 @@ export default function Hero() {
                 className="overflow-clip font-sans text-8xl font-semibold tracking-tighter text-nowrap select-none"
                 initial={{ width: 76, borderTopRightRadius: "1.75rem", borderBottomRightRadius: "1.75rem" }}
                 animate={{ width: 516, borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
-                transition={{ delay: 0.5, duration: 1, ease: [0.741, 0.002, 0.083, 0.999] }}
+                transition={{ delay: 0.25, duration: 1, ease: [0.741, 0.002, 0.083, 0.999] }}
                 // transition={{ delay: 0.5, type: "spring", damping: 10, stiffness: 50 }}
             >
                 <motion.div
                     className="w-fit"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    transition={{ duration: 0.25, ease: "easeInOut" }}
                 >
                     <StaggerClipRevealText duration={0.5} text="GUNIQUE G." />
                 </motion.div>
@@ -174,7 +174,7 @@ export default function Hero() {
                 className="absolute bottom-12 left-4"
                 initial={{ opacity: 0, translateX: "-100%" }}
                 animate={{ opacity: 1, translateX: 0 }}
-                transition={{ delay: 1, duration: 1, ease: [0.741, 0.002, 0.083, 0.999] }}
+                transition={{ delay: 0.75, duration: 1, ease: [0.741, 0.002, 0.083, 0.999] }}
             >
                 <span className="text-accent">WEB</span> DEVELOPER | DESIGNER
             </motion.div>
@@ -183,7 +183,7 @@ export default function Hero() {
                 className="group absolute bottom-2.5 left-1/2 flex -translate-x-1/2 cursor-pointer gap-2"
                 initial={{ opacity: 0, translateY: "200%" }}
                 animate={{ opacity: 1, translateY: 0 }}
-                transition={{ delay: 1, duration: 1, ease: [0.741, 0.002, 0.083, 0.999] }}
+                transition={{ delay: 0.75, duration: 1, ease: [0.741, 0.002, 0.083, 0.999] }}
                 onClick={scrollToWork}
             >
                 <span>VIEW WORK</span>
@@ -200,7 +200,7 @@ export default function Hero() {
                 className="absolute right-4 bottom-12"
                 initial={{ opacity: 0, translateX: "100%" }}
                 animate={{ opacity: 1, translateX: 0 }}
-                transition={{ delay: 1, duration: 1, ease: [0.741, 0.002, 0.083, 0.999] }}
+                transition={{ delay: 0.75, duration: 1, ease: [0.741, 0.002, 0.083, 0.999] }}
             >
                 FOUNDER // <span className="text-accent">OCTAVELABS</span>
             </motion.div>
@@ -209,7 +209,7 @@ export default function Hero() {
                 className="absolute bottom-10 h-px bg-linear-to-r from-white/5 from-1% via-white/25 to-white/5 to-99%"
                 initial={{ opacity: 0.5, width: 0 }}
                 animate={{ opacity: 1, width: "98%" }}
-                transition={{ delay: 0.5, duration: 1, ease: [0.741, 0.002, 0.083, 0.999] }}
+                transition={{ delay: 0.25, duration: 1, ease: [0.741, 0.002, 0.083, 0.999] }}
             />
         </section>
     );
@@ -239,7 +239,7 @@ export default function Hero() {
                             className="text-foreground-dim inline-block w-full text-right font-semibold"
                             initial={{ opacity: 0, y: "-25%" }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 1, duration: 1, ease: "easeInOut" }}
+                            transition={{ delay: 0.75, duration: 1, ease: "easeInOut" }}
                         >
                             FOUNDER // <span className="text-accent">OCTAVELABS</span>
                         </motion.span>
@@ -251,7 +251,7 @@ export default function Hero() {
                 className="font-sans absolute bottom-10 left-1/2 flex -translate-x-1/2 gap-2"
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.5, duration: 1 }}
+                transition={{ delay: 0.75.5, duration: 1 }}
             >
                 <span>VIEW WORK</span>
                 <img src="/icons/arrow-right.svg" alt="arrow-right" width={0} height={0} className="w-3.5 rotate-90" />
