@@ -87,7 +87,7 @@ function StaggerClipRevealText({
     let charIndex = 0;
 
     return (
-        <div className={cn("flex overflow-clip", className)}>
+        <div className={cn("flex w-fit overflow-clip", className)}>
             {chars.map((group, idx) => {
                 return (
                     <div
@@ -102,10 +102,10 @@ function StaggerClipRevealText({
                                     className="relative select-none"
                                     style={{ marginRight: idx2 !== group.length ? letterSpacing : undefined }}
                                 >
-                                    <span className="pointer-events-none opacity-0">{char}</span>
+                                    <span className="pointer-events-none w-fit opacity-0">{char}</span>
                                     <motion.div initial="initial" whileHover="hovered">
                                         <motion.span
-                                            className="absolute inset-0 inline-block"
+                                            className="absolute inset-0 inline-block w-fit"
                                             variants={{
                                                 initial: { opacity: 1, scaleX: "100%" },
                                                 hovered: { opacity: 0, scaleX: "0%" }
@@ -116,7 +116,7 @@ function StaggerClipRevealText({
                                             {char}
                                         </motion.span>
                                         <motion.span
-                                            className="font-nunito absolute inset-0 inline-block"
+                                            className="font-special absolute top-1/2 left-1/2 inline-block -translate-x-1/2 -translate-y-1/2 font-bold"
                                             variants={{
                                                 initial: { opacity: 0, scaleX: "0%" },
                                                 hovered: { opacity: 1, scaleX: "100%", color: "var(--accent)" }
@@ -154,14 +154,14 @@ export default function Hero() {
         >
             {/* Header */}
             <motion.div
-                className="font-satoshi overflow-clip text-6xl font-semibold tracking-tighter text-nowrap select-none"
-                initial={{ width: 45.4 }}
-                animate={{ width: 45.4 * 7 + 12 }}
-                transition={{ delay: 0.5, duration: 1, ease: "circInOut" }}
+                className="overflow-clip font-sans text-8xl font-semibold tracking-tighter text-nowrap select-none"
+                initial={{ width: 76, borderTopRightRadius: "1.75rem", borderBottomRightRadius: "1.75rem" }}
+                animate={{ width: 516, borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
+                transition={{ delay: 0.5, duration: 1, ease: [0.741, 0.002, 0.083, 0.999] }}
                 // transition={{ delay: 0.5, type: "spring", damping: 10, stiffness: 50 }}
             >
                 <motion.div
-                    className="flex"
+                    className="w-fit"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -171,19 +171,19 @@ export default function Hero() {
             </motion.div>
 
             <motion.div
-                className="font-satoshi absolute bottom-12 left-4"
+                className="absolute bottom-12 left-4"
                 initial={{ opacity: 0, translateX: "-100%" }}
                 animate={{ opacity: 1, translateX: 0 }}
-                transition={{ delay: 1, duration: 1, ease: "circInOut" }}
+                transition={{ delay: 1, duration: 1, ease: [0.741, 0.002, 0.083, 0.999] }}
             >
                 <span className="text-accent">WEB</span> DEVELOPER | DESIGNER
             </motion.div>
 
             <motion.button
-                className="font-satoshi group absolute bottom-4 left-1/2 flex -translate-x-1/2 cursor-pointer gap-2 text-xs"
+                className="group absolute bottom-2.5 left-1/2 flex -translate-x-1/2 cursor-pointer gap-2"
                 initial={{ opacity: 0, translateY: "200%" }}
                 animate={{ opacity: 1, translateY: 0 }}
-                transition={{ delay: 1, duration: 1, ease: "circInOut" }}
+                transition={{ delay: 1, duration: 1, ease: [0.741, 0.002, 0.083, 0.999] }}
                 onClick={scrollToWork}
             >
                 <span>VIEW WORK</span>
@@ -197,10 +197,10 @@ export default function Hero() {
             </motion.button>
 
             <motion.div
-                className="font-satoshi absolute right-4 bottom-12"
+                className="absolute right-4 bottom-12"
                 initial={{ opacity: 0, translateX: "100%" }}
                 animate={{ opacity: 1, translateX: 0 }}
-                transition={{ delay: 1, duration: 1, ease: "circInOut" }}
+                transition={{ delay: 1, duration: 1, ease: [0.741, 0.002, 0.083, 0.999] }}
             >
                 FOUNDER // <span className="text-accent">OCTAVELABS</span>
             </motion.div>
@@ -209,7 +209,7 @@ export default function Hero() {
                 className="absolute bottom-10 h-px bg-linear-to-r from-white/5 from-1% via-white/25 to-white/5 to-99%"
                 initial={{ opacity: 0.5, width: 0 }}
                 animate={{ opacity: 1, width: "98%" }}
-                transition={{ delay: 0.5, duration: 1, ease: "circInOut" }}
+                transition={{ delay: 0.5, duration: 1, ease: [0.741, 0.002, 0.083, 0.999] }}
             />
         </section>
     );
@@ -221,7 +221,7 @@ export default function Hero() {
             id="home"
             className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-4"
         >
-            <div className="font-satoshi flex flex-col font-semibold tracking-tighter">
+            <div className="font-sans flex flex-col font-semibold tracking-tighter">
                 <div className="flex flex-col items-center gap-2">
                     <StaggerClipRevealText duration={0.5} className="text-8xl font-bold" text="GUNIQUE G" />
 
@@ -248,7 +248,7 @@ export default function Hero() {
             </div>
 
             <motion.div
-                className="font-satoshi absolute bottom-10 left-1/2 flex -translate-x-1/2 gap-2"
+                className="font-sans absolute bottom-10 left-1/2 flex -translate-x-1/2 gap-2"
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.5, duration: 1 }}
@@ -264,8 +264,8 @@ export default function Hero() {
 //     return (
 //         <section id="top" className="mt-32 w-full px-4">
 //             {/* Mobile/Header Typography */}
-//             <div className="font-satoshi flex w-full flex-col gap-3 md:hidden">
-//                 <span className="font-satoshi w-full text-4xl font-semibold">GUNIQUE G.</span>
+//             <div className="font-sans flex w-full flex-col gap-3 md:hidden">
+//                 <span className="font-sans w-full text-4xl font-semibold">GUNIQUE G.</span>
 //                 <div className="flex w-full flex-col items-center justify-center leading-tight tracking-tighter">
 //                     <div className="flex w-full items-center justify-end gap-4">
 //                         <Image src="/icons/arrow-right.svg" alt="arrow-right" width={0} height={0} className="w-14" />
@@ -280,8 +280,8 @@ export default function Hero() {
 //             </div>
 
 //             {/* Desktop/Header Typography */}
-//             <div className="font-satoshi hidden w-full flex-col gap-3 md:flex">
-//                 <span className="font-satoshi w-full text-4xl font-semibold">GUNIQUE G.</span>
+//             <div className="font-sans hidden w-full flex-col gap-3 md:flex">
+//                 <span className="font-sans w-full text-4xl font-semibold">GUNIQUE G.</span>
 //                 <div className="flex w-full flex-col items-center justify-center leading-tight tracking-tighter">
 //                     <div className="flex w-full items-center gap-4">
 //                         <Image src="/icons/arrow-right.svg" alt="arrow-right" width={0} height={0} className="w-14" />

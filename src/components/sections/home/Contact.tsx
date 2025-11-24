@@ -72,7 +72,7 @@ export default function Contact() {
                 {/* <SectionHeader title="// CONTACT" description="Let's get your business the attention it needs." /> */}
 
                 <div className="flex w-full flex-col gap-2">
-                    <span className="font-satoshi text-6xl font-bold tracking-tight">// CONTACT</span>
+                    <span className="font-sans text-6xl font-bold tracking-tight">// CONTACT</span>
                     <span className="text-foreground-dim text-xl font-normal tracking-tight">Request an inquiry today.</span>
                 </div>
 

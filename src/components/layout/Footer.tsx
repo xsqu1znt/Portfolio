@@ -10,7 +10,7 @@ function ArrowLink({ label, href }: { label: string; href: string }) {
             <span className="pointer-events-none opacity-0">{label}</span>
             <ArrowUpRight className="text-accent absolute top-0 left-0 size-4 -translate-x-6 -rotate-90 stroke-[1.5px] opacity-0 transition-all duration-200 group-hover:size-6 group-hover:translate-x-0 group-hover:rotate-0 group-hover:opacity-100" />
             <a
-                className="font-nunito absolute top-0 left-0 transition-all duration-250 group-hover:translate-x-7"
+                className="absolute top-0 left-0 font-serif transition-all duration-250 group-hover:translate-x-7"
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -24,7 +24,7 @@ function ArrowLink({ label, href }: { label: string; href: string }) {
 function UnderlineLink({ label, href }: { label: string; href: string }) {
     return (
         <div className="group relative w-fit cursor-pointer overflow-hidden text-nowrap">
-            <a className="font-nunito" href={href} target="_blank" rel="noopener noreferrer">
+            <a className="font-serif" href={href} target="_blank" rel="noopener noreferrer">
                 {label}
             </a>
             <div className="opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -43,7 +43,7 @@ function ArrowLinkList({ links }: { links: { label: string; href: string }[] }) 
 }
 
 function List(props: ComponentProps<"ul">) {
-    return <ul {...props} className="font-nunito flex flex-col gap-0.5" />;
+    return <ul {...props} className="flex flex-col gap-0.5 font-serif" />;
 }
 
 function LabeledList({ label, children, ...props }: ComponentProps<"div"> & { label: string }) {
@@ -94,13 +94,13 @@ export default function Footer() {
 
     return (
         <div className="mt-32 w-full px-4">
-            <footer className="font-satoshi border-b-none flex w-full flex-col gap-8 rounded-t-md border border-white/5 bg-white/5 p-6">
+            <footer className="border-b-none flex w-full flex-col gap-8 rounded-t-md border border-white/5 bg-white/5 p-6 font-sans">
                 {/* Header */}
                 <div className="flex w-full justify-between gap-2">
                     <StackedTextRow label="GUNIQUE⠀G." />
 
                     {/* Button/Top */}
-                    <button className="font-nunito group flex cursor-pointer items-center gap-1" onClick={scrollToTop}>
+                    <button className="group flex cursor-pointer items-center gap-1 font-serif" onClick={scrollToTop}>
                         <ArrowUp className="text-icon-active ease-overshoot size-10 rotate-45 stroke-[1.5px] transition-all duration-300 group-hover:rotate-0" />
                     </button>
                 </div>
@@ -152,7 +152,7 @@ export default function Footer() {
                 </div>
 
                 {/* Copyright */}
-                <span className="font-nunito text-foreground-dim w-full text-sm font-medium">
+                <span className="text-foreground-dim w-full font-serif text-sm font-medium">
                     © {new Date().getFullYear()} | Designed & Built by Gunique G.
                 </span>
             </footer>

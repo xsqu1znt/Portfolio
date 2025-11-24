@@ -3,12 +3,13 @@
 import { cn } from "@/lib/utils";
 import { ComponentProps } from "react";
 
-export type ButtonStyles = "primary" | "accent";
+export type ButtonStyles = "primary" | "accent" | "transparent";
 export type ButtonSizes = "normal";
 
 export const buttonStyles: Record<ButtonStyles, string> = {
     primary: "",
-    accent: "shade-3d bg-accent text-background-primary font-satoshi "
+    accent: "bg-accent text-background-primary",
+    transparent: "bg-transparent"
 };
 
 export const buttonSizes: Record<ButtonSizes, string> = {
@@ -58,7 +59,7 @@ export default function Button({
         <button
             {...props}
             className={cn(
-                "font-satoshi flex w-fit cursor-pointer items-center rounded-md font-bold transition-all duration-300",
+                "flex w-fit cursor-pointer items-center rounded-md font-sans font-medium transition-all duration-300",
                 buttonStyles[variant || "primary"],
                 buttonSizes[size || "normal"],
                 buttonAlignment[alignment || "center"],

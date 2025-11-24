@@ -55,7 +55,7 @@ export default function FeaturedWork() {
             >
                 <div className="overflow-clip">
                     <motion.h2
-                        className="font-satoshi inline-block text-4xl font-semibold tracking-tight"
+                        className="inline-block font-sans text-4xl font-semibold tracking-tight"
                         initial={{ opacity: 0, translateY: "100%" }}
                         whileInView={{ opacity: 1, translateY: 0 }}
                         // transition={{ duration: 0.5, ease: "circInOut" }}

@@ -9,7 +9,7 @@ import Services from "@/components/sections/home/Services";
 
 export default function Home() {
     return (
-        <main className="font-nunito flex min-h-screen min-w-[320px] flex-col">
+        <main className="flex min-h-screen min-w-[320px] flex-col">
             <Hero />
             <FeaturedWork />
             <Branding />

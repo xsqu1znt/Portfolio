@@ -25,7 +25,7 @@ function FAQAccordion({
         <div
             {...props}
             className={cn(
-                `group font-nunito flex w-full flex-col gap-2 border border-t-transparent border-r-transparent border-l-transparent bg-transparent px-4 py-4.5 transition-all duration-300 ${collapsed ? "" : "rounded-md border-t-white/5 border-r-white/5 border-l-white/5 bg-white/5 shadow-[0_0_32px_2px] shadow-white/5"}`,
+                `group flex w-full flex-col gap-2 border border-t-transparent border-r-transparent border-l-transparent bg-transparent px-4 py-4.5 font-serif transition-all duration-300 ${collapsed ? "" : "rounded-md border-t-white/5 border-r-white/5 border-l-white/5 bg-white/5 shadow-[0_0_32px_2px] shadow-white/5"}`,
                 className
             )}
         >

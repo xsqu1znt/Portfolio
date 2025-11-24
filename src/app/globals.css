@@ -36,16 +36,16 @@
 
     --color-icon-active: var(--icon-active);
 
-    --font-nunito: var(--font-nunito);
-    --font-sans: var(--font-work-sans);
-    --font-satoshi: var(--font-satoshi);
+    --font-sans: var(--font-sans);
+    --font-serif: var(--font-serif);
+    --font-special: var(--font-special);
 
     --ease-overshoot: linear(0, 0.807 15.8%, 1.05 24.4%, 1.196 33.8%, 1.245 41.6%, 1.242 50.6%, 1.038 84%, 1);
 }
 
 @layer base {
     body {
-        @apply bg-background-primary text-foreground-primary font-nunito min-h-screen min-w-80 scroll-smooth transition-colors duration-300;
+        @apply bg-background-primary text-foreground-primary min-h-screen min-w-80 scroll-smooth font-serif transition-colors duration-300;
     }
 
     .section {

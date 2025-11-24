@@ -2,27 +2,34 @@ import type { Metadata, Viewport } from "next";
 import { Nunito, Work_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import "./animations.css";
 import Navbar from "@/components/layout/Navbar";
 import ReactLenis from "lenis/react";
 import Footer from "@/components/layout/Footer";
 import SmoothCursor from "@/components/common/SmoothCursor";
-import BackgroundNoise from "@/components/layout/BackgroundNoise";
+import Grain from "@/components/layout/Grain";
 
-const workSans = Work_Sans({
-    variable: "--font-work-sans",
-    subsets: ["latin"],
-    display: "swap"
-});
-
-const nunito = Nunito({
+/* const nunito = Nunito({
     variable: "--font-nunito",
     subsets: ["latin"],
     display: "swap"
+}); */
+
+const font_sans = localFont({
+    variable: "--font-sans",
+    src: "../../public/fonts/Satoshi-Variable.ttf",
+    display: "swap"
 });
 
-const satoshi = localFont({
-    variable: "--font-satoshi",
-    src: "../../public/fonts/Satoshi-Variable.ttf",
+const font_serif = localFont({
+    variable: "--font-serif",
+    src: "../../public/fonts/Hind-Variable.ttf",
+    display: "swap"
+});
+
+const font_special = localFont({
+    variable: "--font-special",
+    src: "../../public/fonts/Melodrama-Variable.ttf",
     display: "swap"
 });
 
@@ -94,11 +101,11 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`dark no-scrollbar relative antialiased ${workSans.variable} ${nunito.variable} ${satoshi.variable}`}
+                className={`dark no-scrollbar relative antialiased ${font_sans.variable} ${font_serif.variable} ${font_special.variable}`}
             >
-                <BackgroundNoise />
+                <Grain />
                 <ReactLenis root options={{ lerp: 0.15, allowNestedScroll: true }} />
-                <SmoothCursor />
+                {/* <SmoothCursor /> */}
                 <Navbar />
                 {children}
                 <Footer />

@@ -84,7 +84,7 @@ function HeadingText({ containerRef }: { containerRef?: RefObject<HTMLDivElement
             className="pointer-events-none sticky top-1/2 flex -translate-y-1/2 flex-col items-center text-center"
             style={{ opacity, translateY }}
         >
-            <span className="text-background-primary font-satoshi text-6xl font-medium tracking-tight transition-colors duration-300 text-shadow-lg">
+            <span className="text-background-primary font-sans text-6xl font-medium tracking-tight transition-colors duration-300 text-shadow-lg">
                 Your business deserves attention.
             </span>
         </motion.div>
@@ -108,7 +108,7 @@ function BottomBranding({ containerRef }: { containerRef?: RefObject<HTMLDivElem
             className="pointer-events-none fixed bottom-0 left-1/2 -z-10 -translate-x-1/2 translate-y-1/2"
             style={{ opacity, translateX }}
         >
-            <span className="font-satoshi text-foreground-primary/15 text-[19vw] font-light text-nowrap transition-colors duration-300 text-shadow-[12px_12px_2px] text-shadow-black/4">
+            <span className="text-foreground-primary/15 font-sans text-[19vw] font-light text-nowrap transition-colors duration-300 text-shadow-[12px_12px_2px] text-shadow-black/4">
                 GUNIQUE GUNIQUE GUNIQUE
             </span>
         </motion.div>

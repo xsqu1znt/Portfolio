@@ -7,6 +7,7 @@ import { useLenis } from "lenis/react";
 import { ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
+import Button from "../ui/Button";
 
 export default function Navbar() {
     const lenis = useLenis();
@@ -21,7 +22,7 @@ export default function Navbar() {
     const { scrollY } = useScroll();
     const lastScrollPositionY = useRef<number>(0);
 
-    useEffect(() => {
+    /* useEffect(() => {
         if (!scrollY || !viewportHeight) return;
         setIsFull(scrollY >= viewportHeight);
 
@@ -45,7 +46,7 @@ export default function Navbar() {
         }
 
         lastScrollPositionY.current = scrollY;
-    }, [scrollY, viewportHeight]);
+    }, [scrollY, viewportHeight]); */
 
     const handleMenuToggle = () => {
         setIsMenuOpen(prev => !prev);
@@ -75,23 +76,35 @@ export default function Navbar() {
     return (
         <div className={cn("fixed top-0 left-0 z-50 w-full transition-all duration-300", hidden && "-top-full")}>
             <motion.header
-                className="font-satoshi relative p-4"
+                className="relative grid grid-cols-3 p-4"
                 initial={{ opacity: 0, translateY: "-200%" }}
                 animate={{ opacity: 1, translateY: 0 }}
-                transition={{ delay: 1, duration: 1, ease: "circInOut" }}
+                transition={{ delay: 1, duration: 1, ease: [0.741, 0.002, 0.083, 0.999] }}
             >
+                {/* Logo */}
+                <a href="/" className="font-sans text-2xl font-semibold">
+                    GG.
+                </a>
+
                 {/* Menu */}
-                <div
+                <ul className="flex items-center gap-6 place-self-center font-sans text-lg font-medium">
+                    <li>
+                        <a href="#work">Work</a>
+                    </li>
+                    <li>
+                        <a href="#services">Services</a>
+                    </li>
+                    <li>
+                        <a href="#faq">FAQ</a>
+                    </li>
+                </ul>
+
+                {/* <div
                     className={cn(
                         "group absolute top-4 left-4 flex h-[50px] items-center justify-between rounded-md border border-white/5 bg-white/5 px-4 py-2 backdrop-blur-xl transition-all duration-300",
                         isFull ? "w-[calc(100%-32px)]" : "w-48"
                     )}
                 >
-                    {/* Logo */}
-                    <a href="/" className="-m-1 p-1 text-2xl font-semibold">
-                        GG
-                    </a>
-
                     <button
                         className={cn("flex h-[40px] items-center justify-end", isFull ? "w-[calc(100vw-32px)]" : "w-48")}
                         onClick={handleMenuToggle}
@@ -104,7 +117,6 @@ export default function Navbar() {
                         onMouseEnter={handleMenuMouseEnter}
                         onTouchMove={handleMenuMouseEnter}
                     >
-                        {/* Hamburger */}
                         <div className="-mx-1 cursor-pointer px-1 py-3">
                             <div
                                 className={cn(
@@ -137,20 +149,18 @@ export default function Navbar() {
                             </div>
                         </div>
                     </button>
-                </div>
+                </div> */}
 
                 {/* CTA/Contact */}
-                <div className={"absolute top-4 right-4 z-[-1] overflow-y-hidden"}>
-                    <button
-                        className={cn(
-                            "shade-3d flex h-[50px] cursor-pointer items-center rounded-md border border-white/5 bg-white/5 px-4 py-2.5 backdrop-blur-xl transition-all duration-300",
-                            isFull && "-translate-y-16"
-                        )}
+                <div>
+                    <Button
+                        variant="transparent"
+                        label="CONTACT"
+                        className="place-self-end p-0"
                         onClick={handleScrollContact}
                     >
-                        CONTACT
-                        <ChevronRight className="-mr-2 ml-1 h-6 stroke-1" />
-                    </button>
+                        <ChevronRight className="size-5 stroke-[1.5px]" />
+                    </Button>
                 </div>
             </motion.header>
         </div>

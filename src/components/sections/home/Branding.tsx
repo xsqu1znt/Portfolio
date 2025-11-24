@@ -15,7 +15,7 @@ function BottomBranding({ selfRef }: { selfRef?: RefObject<HTMLDivElement | null
             // whileInView={{ opacity: 1 }}
             // transition={{ duration: 0.3 }}
         >
-            <span className="font-satoshi text-foreground-primary/15 text-6xl font-light text-nowrap uppercase transition-colors duration-300 text-shadow-[12px_12px_2px] text-shadow-black/4">
+            <span className="text-foreground-primary/15 font-sans text-6xl font-light text-nowrap uppercase transition-colors duration-300 text-shadow-[12px_12px_2px] text-shadow-black/4">
                 Landing Page | Custom Website | UI/UX Design | Copy // Marketing | SEO-Optimization | Maintenance
             </span>
         </motion.div>
