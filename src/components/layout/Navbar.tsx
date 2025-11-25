@@ -83,7 +83,7 @@ export default function Navbar() {
             >
                 {/* Logo */}
                 <a href="/" className="font-sans text-2xl font-semibold">
-                    GG.
+                    GG
                 </a>
 
                 {/* Menu */}

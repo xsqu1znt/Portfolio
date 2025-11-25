@@ -4,7 +4,9 @@
     left: 0;
     z-index: -999;
     pointer-events: none;
-    opacity: 0.3;
+    opacity: 0;
+    animation: 1s ease-in-out forwards grain-fadeIn;
+    animation-delay: 500ms;
 }
 
 .grain::after {
@@ -49,5 +51,14 @@
     }
     90% {
         transform: translate(-10%, 10%);
+    }
+}
+
+@keyframes grain-fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.4;
     }
 }
