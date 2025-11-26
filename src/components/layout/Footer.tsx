@@ -81,7 +81,11 @@ function IconLink({
             />
             {/* Label */}
             <a
-                className={`inline-block font-sans transition-all duration-250 group-hover:translate-x-${translateXMargin} ${accent ? "text-accent" : ""}`}
+                className={cn(
+                    "inline-block font-sans transition-all duration-250 group-hover:translate-x-8",
+                    translateXMargin && `group-hover:translate-x-${translateXMargin}`,
+                    accent && "text-accent"
+                )}
                 href={href}
                 target={newTab ? "_blank" : undefined}
                 rel={newTab ? "noopener noreferrer" : undefined}
