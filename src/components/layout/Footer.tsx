@@ -71,7 +71,7 @@ function IconLink({
             <img
                 src={iconSrc}
                 alt={iconAlt}
-                className={`absolute top-1/2 left-0 -z-10 size-${iconSize - 1} -translate-x-full -translate-y-1/2 -rotate-45 opacity-0 transition-all duration-300 group-hover:size-${iconSize} group-hover:translate-x-0 ${reverseIconAlignment ? "group-hover:-rotate-5" : "group-hover:rotate-5"} group-hover:opacity-50`}
+                className={`absolute top-1/2 left-0 -z-10 size-${iconSize - 1} -translate-x-full -translate-y-1/2 -rotate-45 opacity-0 transition-all duration-350 group-hover:size-${iconSize} group-hover:translate-x-0 ${reverseIconAlignment ? "group-hover:-rotate-5" : "group-hover:rotate-5"} group-hover:opacity-50`}
             />
             {/* Glow */}
             <img
@@ -143,7 +143,20 @@ export default function Footer() {
     };
 
     return (
-        <div className="mt-32 flex flex-col">
+        <div className="relative flex min-h-screen flex-col justify-end overflow-hidden">
+            {/* Snow */}
+            <video
+                src="/videos/overlays/snow.mp4"
+                autoPlay
+                loop
+                muted
+                className="absolute top-0 left-0 -z-50 w-screen opacity-15"
+                style={{
+                    maskImage: "linear-gradient(to bottom, transparent, black)",
+                    WebkitMaskImage: "linear-gradient(to bottom, transparent, black)"
+                }}
+            />
+
             {/* Header */}
             <h3 className="px-4 text-center text-2xl font-light">Building spaces that inspire connections.</h3>
 
