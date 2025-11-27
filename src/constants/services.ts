@@ -1,4 +1,4 @@
-import { ServiceCardProps } from "@/types/types";
+import { ServiceCardProps } from "@/types/shared";
 
 // --- Main Services ---
 export const MainServices: Omit<ServiceCardProps, "index" | "handleContact">[] = [

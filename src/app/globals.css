@@ -3,7 +3,7 @@
 :root {
     --white: #eee8e0;
     --black: #000000;
-    --accent: #71b6ff;
+    --accent: #69acf7;
 
     --background-primary: var(--black);
     --background-secondary: #292a39;
@@ -11,7 +11,7 @@
     --foreground-dim: #e4e6ef80;
     --foreground-dimmer: #eee8e015;
 
-    --icon-active: #eec997;
+    --icon-active: #f7b569;
 }
 
 /* @custom-variant dark (&:is(.dark, .dark *));

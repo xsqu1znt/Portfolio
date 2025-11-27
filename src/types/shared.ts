@@ -12,3 +12,11 @@ export interface ServiceCardProps {
     extraDetails: string[];
     handleContact?: () => void;
 }
+
+export interface TestimonialCardProps {
+    imageSrc: string;
+    flagSrc?: string;
+    name: string;
+    handle: string;
+    review: string | string[];
+}

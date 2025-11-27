@@ -2,7 +2,7 @@
 
 import { useUserClient } from "@/hooks/useUserClient";
 import { cn } from "@/lib/utils";
-import { ServiceCardProps } from "@/types/types";
+import { ServiceCardProps } from "@/types/shared";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import Button from "../ui/Button";
