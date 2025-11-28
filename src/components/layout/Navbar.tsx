@@ -1,12 +1,13 @@
 "use client";
 
+import { easings } from "@/config/motion";
 import { useScroll } from "@/hooks/useScroll";
 import useViewportSize from "@/hooks/useViewportSize";
 import { cn } from "@/lib/utils";
 import { useLenis } from "lenis/react";
 import { ChevronRight } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
+import { useRef, useState } from "react";
 import Button from "../ui/Button";
 
 export default function Navbar() {
@@ -79,7 +80,7 @@ export default function Navbar() {
                 className="relative grid grid-cols-3 p-4"
                 initial={{ opacity: 0, translateY: "-200%" }}
                 animate={{ opacity: 1, translateY: 0 }}
-                transition={{ delay: 0.75, duration: 1, ease: [0.741, 0.002, 0.083, 0.999] }}
+                transition={{ delay: 0.75, duration: 1, ease: easings.fluidInOut }}
             >
                 {/* Logo */}
                 <a href="/" className="w-fit font-sans text-2xl font-semibold">
@@ -92,14 +93,14 @@ export default function Navbar() {
                         <a href="#work">Work</a>
                     </li>
                     <li>
-                        <a href="#faq">About</a>
+                        <a href="#about">About</a>
                     </li>
                     <li>
                         <a href="#services">Services</a>
                     </li>
-                    <li>
+                    {/* <li>
                         <a href="#contact">Contact</a>
-                    </li>
+                    </li> */}
                 </ul>
 
                 {/* <div
