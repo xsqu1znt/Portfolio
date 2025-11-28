@@ -9,6 +9,34 @@ import { ChevronRight } from "lucide-react";
 import { motion } from "motion/react";
 import { useRef, useState } from "react";
 import Button from "../ui/Button";
+import { styles } from "@/constants/styles";
+
+function NavLink({ label, sectionId }: { label: string; sectionId: string }) {
+    const lenis = useLenis();
+
+    const scrollTo = () => {
+        lenis?.scrollTo(`#${sectionId}`, { duration: 2, offset: -100 });
+    };
+
+    return (
+        <a className="group relative inline-block cursor-pointer" onClick={scrollTo}>
+            <span className="transition-opacity duration-300 group-hover:opacity-75">{label}</span>
+            <div className="absolute bottom-1 left-1/2 h-[1.25px] w-0 -translate-x-1/2 bg-white transition-all duration-300 group-hover:w-full" />
+        </a>
+    );
+}
+
+function NavLinkList({ links }: { links: { label: string; sectionId: string }[] }) {
+    return (
+        <ul className="flex items-center gap-6 place-self-center font-sans text-lg font-medium">
+            {links.map(link => (
+                <li key={link.sectionId}>
+                    <NavLink {...link} />
+                </li>
+            ))}
+        </ul>
+    );
+}
 
 export default function Navbar() {
     const lenis = useLenis();
@@ -77,31 +105,27 @@ export default function Navbar() {
     return (
         <div className={cn("fixed top-0 left-0 z-50 w-full transition-all duration-300", hidden && "-top-full")}>
             <motion.header
-                className="relative grid grid-cols-3 p-4"
+                className={`relative grid grid-cols-3 ${styles.padding.navbar}`}
                 initial={{ opacity: 0, translateY: "-200%" }}
                 animate={{ opacity: 1, translateY: 0 }}
                 transition={{ delay: 0.75, duration: 1, ease: easings.fluidInOut }}
             >
                 {/* Logo */}
-                <a href="/" className="w-fit font-sans text-2xl font-semibold">
+                <a
+                    href="/"
+                    className="w-fit cursor-pointer place-content-center font-sans text-2xl font-semibold transition-all duration-300 hover:opacity-75"
+                >
                     GG
                 </a>
 
-                {/* Menu */}
-                <ul className="flex items-center gap-6 place-self-center font-sans text-lg font-medium">
-                    <li>
-                        <a href="#work">Work</a>
-                    </li>
-                    <li>
-                        <a href="#about">About</a>
-                    </li>
-                    <li>
-                        <a href="#services">Services</a>
-                    </li>
-                    {/* <li>
-                        <a href="#contact">Contact</a>
-                    </li> */}
-                </ul>
+                {/* Links */}
+                <NavLinkList
+                    links={[
+                        { label: "Work", sectionId: "work" },
+                        { label: "Services", sectionId: "services" },
+                        { label: "About", sectionId: "about" }
+                    ]}
+                />
 
                 {/* <div
                     className={cn(
@@ -156,16 +180,9 @@ export default function Navbar() {
                 </div> */}
 
                 {/* CTA/Contact */}
-                <div>
-                    <Button
-                        variant="transparent"
-                        label="CONTACT"
-                        className="place-self-end p-0"
-                        onClick={handleScrollContact}
-                    >
-                        <ChevronRight className="size-5 stroke-[1.5px]" />
-                    </Button>
-                </div>
+                <Button variant="transparent" label="CONTACT" className="place-self-end p-0" onClick={handleScrollContact}>
+                    <ChevronRight className="size-5 stroke-[1.5px]" />
+                </Button>
 
                 {/* Progressive blur */}
                 <div

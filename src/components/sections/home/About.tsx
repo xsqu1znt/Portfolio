@@ -85,8 +85,11 @@ export default function About() {
 
             {/* Extra */}
             <div className="flex flex-col gap-12">
-                <div className="flex max-w-1/2 flex-col">
-                    <span className="text-foreground-dim cursor-default text-sm">MY PROCESS</span>
+                <div className="grid grid-cols-2 gap-12">
+                    <div className="flex gap-2">
+                        <span className="text-foreground-dim cursor-default text-xs tracking-tighter">//</span>
+                        <span className="text-foreground-dim cursor-default font-sans text-2xl">MY PROCESS</span>
+                    </div>
                     <p className="text-lg leading-relaxed tracking-wide">
                         I follow a simple process that keeps everything predictable: Research. Wireframes. Design.
                         Development. Launch. Support. Clients always know what stage we're in and what's coming next.
@@ -96,8 +99,11 @@ export default function About() {
                 {/* Separator */}
                 <div className="bg-foreground-dimmer h-px w-full" />
 
-                <div className="flex max-w-1/2 flex-col">
-                    <span className="text-foreground-dim cursor-default text-sm">MY EXPERIENCE</span>
+                <div className="grid grid-cols-2 gap-12">
+                    <div className="flex gap-2">
+                        <span className="text-foreground-dim cursor-default text-xs tracking-tighter">//</span>
+                        <span className="text-foreground-dim cursor-default font-sans text-2xl">MY EXPERIENCE</span>
+                    </div>
                     <p className="text-lg leading-relaxed tracking-wide">
                         I've spent 5+ years freelancing, building trust, relationships, and projects across websites, bots,
                         and custom tools. I handle both design and development, so projects stay consistent from start to
@@ -112,12 +118,16 @@ export default function About() {
             {/* OCTAVELABS */}
             <div className="mt-32 flex flex-col gap-12">
                 <div className="flex flex-col gap-4">
-                    <p className="text-right leading-relaxed tracking-wide">
-                        I'm the founder of a web development agency called <span className="text-accent">Octave Labs</span>.{" "}
-                        <br />
-                        My team focuses on building modern, fast, and functional websites. As well as{" "}
-                        <span className="font-semibold">BOLD,</span> memorable branding for your audience.
-                    </p>
+                    <div className="grid grid-cols-2 gap-12">
+                        <p className="leading-relaxed tracking-wide">
+                            I'm the founder of a web development agency called{" "}
+                            <span className="text-accent">Octave Labs</span>. My team focuses on building modern, fast, and
+                            functional websites. As well as <span className="font-semibold">BOLD,</span> memorable branding
+                            for your audience.
+                        </p>
+                    </div>
+
+                    {/* Placeholder/Image */}
                     <div className="h-64 w-full border border-white/5 bg-white/5" />
                 </div>
             </div>

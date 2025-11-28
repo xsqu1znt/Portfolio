@@ -1,9 +1,11 @@
 "use client";
 
 import { easings } from "@/config/motion";
+import { styles } from "@/constants/styles";
 import { cn } from "@/lib/utils";
 import { useLenis } from "lenis/react";
 import { motion } from "motion/react";
+import { ArrowDown } from "lucide-react";
 
 function StaggerClipRevealText({
     className,
@@ -91,7 +93,7 @@ export default function Hero() {
     return (
         <section
             id="home"
-            className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-4"
+            className={`relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden ${styles.padding.section}`}
         >
             {/* Header */}
             <motion.div
@@ -121,7 +123,7 @@ export default function Hero() {
             </motion.div>
 
             <motion.div
-                className="absolute bottom-12 left-4"
+                className="absolute bottom-12 left-4 md:left-8"
                 initial={{ opacity: 0, translateX: "-100%" }}
                 animate={{ opacity: 1, translateX: 0 }}
                 transition={{ delay: 0.75, duration: 1, ease: easings.fluidInOut }}
@@ -130,24 +132,18 @@ export default function Hero() {
             </motion.div>
 
             <motion.button
-                className="group absolute bottom-2.5 left-1/2 flex -translate-x-1/2 cursor-pointer gap-2"
+                className="group absolute bottom-2.5 left-1/2 flex -translate-x-1/2 cursor-pointer gap-1"
                 initial={{ opacity: 0, translateY: "200%" }}
                 animate={{ opacity: 1, translateY: 0 }}
                 transition={{ delay: 0.75, duration: 1, ease: easings.fluidInOut }}
                 onClick={scrollToWork}
             >
-                <span>VIEW WORK</span>
-                <img
-                    src="/icons/arrow-right.svg"
-                    alt="arrow-right"
-                    width={0}
-                    height={0}
-                    className="w-3 rotate-90 transition-transform duration-300 group-hover:translate-y-1"
-                />
+                <span className="group-hover:opacity-75 transition-opacity duration-300">VIEW WORK</span>
+                <ArrowDown className="w-4 stroke-icon-active transition-transform duration-300 group-hover:translate-y-0.5" />
             </motion.button>
 
             <motion.div
-                className="absolute right-4 bottom-12"
+                className="absolute right-4 bottom-12 md:right-8"
                 initial={{ opacity: 0, translateX: "100%" }}
                 animate={{ opacity: 1, translateX: 0 }}
                 transition={{ delay: 0.75, duration: 1, ease: easings.fluidInOut }}
@@ -158,7 +154,7 @@ export default function Hero() {
             <motion.div
                 className="absolute bottom-10 h-px bg-linear-to-r from-white/5 from-1% via-white/25 to-white/5 to-99%"
                 initial={{ opacity: 0.5, width: 0 }}
-                animate={{ opacity: 1, width: "98%" }}
+                animate={{ opacity: 1, width: "96%" }}
                 transition={{ delay: 0.25, duration: 1, ease: easings.fluidInOut }}
             />
         </section>

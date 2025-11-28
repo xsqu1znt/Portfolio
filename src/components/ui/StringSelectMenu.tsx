@@ -4,6 +4,7 @@ import { ChevronDown } from "lucide-react";
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { NoTouchPropagation } from "../common/NoTouchPropagation";
+import { useLenis } from "lenis/react";
 
 export type StringSelectStyles = "primary";
 export type StringSelectSizes = "normal";
@@ -56,6 +57,8 @@ export default function StringSelectMenu({
     className,
     ...props
 }: Props) {
+    const lenis = useLenis();
+
     const styleVariant = stringSelectStyles[variant || "primary"];
     const styleSize = stringSelectSizes[size || "normal"];
     const styleMinWidth = stringSelectMinWidths[size || "normal"];
@@ -67,6 +70,12 @@ export default function StringSelectMenu({
     useHandleClickOutside(buttonRef, () => setIsOpen(false));
 
     useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflowY = "hidden";
+        } else {
+            document.body.style.overflowY = "";
+        }
+
         if (!isOpen) return;
 
         const handleKeyDown = (e: KeyboardEvent) => {

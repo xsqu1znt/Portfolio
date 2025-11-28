@@ -7,7 +7,7 @@ export type ButtonStyles = "primary" | "accent" | "transparent";
 export type ButtonSizes = "normal";
 
 export const buttonStyles: Record<ButtonStyles, string> = {
-    primary: "",
+    primary: "bg-background-secondary border border-white/5 text-foreground-primary",
     accent: "bg-accent text-background-primary",
     transparent: "bg-transparent"
 };
@@ -59,7 +59,7 @@ export default function Button({
         <button
             {...props}
             className={cn(
-                "flex w-fit cursor-pointer items-center rounded-md font-sans font-medium transition-all duration-300",
+                "group flex w-fit cursor-pointer items-center rounded-md font-sans font-medium transition-all duration-300 hover:opacity-75",
                 buttonStyles[variant || "primary"],
                 buttonSizes[size || "normal"],
                 buttonAlignment[alignment || "center"],
@@ -70,7 +70,16 @@ export default function Button({
             )}
         >
             {label}
-            <div className={buttonIconMargin[iconAlignment || "right"]}>{children}</div>
+            {children && (
+                <div
+                    className={cn(
+                        "transition-transform duration-300 group-hover:translate-x-1",
+                        buttonIconMargin[iconAlignment || "right"]
+                    )}
+                >
+                    {children}
+                </div>
+            )}
         </button>
     );
 }

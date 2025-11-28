@@ -5,6 +5,7 @@ import { ArrowUp, ArrowUpRight } from "lucide-react";
 import { ComponentProps } from "react";
 import { MarqueeItem, VelocityMarquee } from "../ui/VelocityMarquee";
 import { cn } from "@/lib/utils";
+import { styles } from "@/constants/styles";
 
 interface ArrowLinkProps {
     label: string;
@@ -33,14 +34,22 @@ interface IconLinkProps {
 }
 
 function ArrowLink({ label, href, accent, newTab }: ArrowLinkProps) {
+    const lenis = useLenis();
+
+    const scrollTo = () => {
+        if (!href.startsWith("#")) return;
+        lenis?.scrollTo(href, { offset: -100, duration: 2 });
+    };
+
     return (
         <div className="group relative w-fit cursor-pointer overflow-hidden pr-8 text-2xl text-nowrap">
             <ArrowUpRight className="text-accent absolute top-1/2 left-0 size-6 -translate-x-6 -translate-y-1/2 -rotate-90 stroke-[1.5px] opacity-0 transition-all duration-200 group-hover:size-7 group-hover:translate-x-0 group-hover:rotate-0 group-hover:opacity-100" />
             <a
                 className={`inline-block font-sans transition-all duration-250 group-hover:translate-x-7 ${accent ? "text-accent" : ""}`}
-                href={href}
+                href={href.startsWith("#") ? undefined : href}
                 target={newTab ? "_blank" : undefined}
                 rel={newTab ? "noopener noreferrer" : undefined}
+                onClick={scrollTo}
             >
                 {label}
             </a>
@@ -162,12 +171,12 @@ export default function Footer() {
             />
 
             {/* Header */}
-            <h3 className="px-4 text-center text-2xl font-light">Building spaces that inspire connections.</h3>
+            <h3 className={`${styles.padding.section} text-center text-2xl`}>Building spaces that inspire connections.</h3>
 
             {/* Footer */}
             <footer className="mt-8 flex flex-col">
                 {/* Wrapper/Margin */}
-                <div className="px-4">
+                <div className={styles.padding.section}>
                     <div className="border-foreground-dimmer relative grid w-full grid-cols-3 border-t py-8">
                         <LabeledList label="CONTACT">
                             <ul className="mb-4 font-sans text-2xl">
@@ -191,8 +200,8 @@ export default function Footer() {
                             <LinkList
                                 links={[
                                     { label: "Work", href: "#work" },
-                                    { label: "About", href: "#about" },
                                     { label: "Services", href: "#services" },
+                                    { label: "About", href: "#about" },
                                     { label: "Contact", href: "#contact" }
                                 ]}
                             />

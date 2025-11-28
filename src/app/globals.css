@@ -51,7 +51,7 @@
     }
 
     .section {
-        @apply mt-50 flex min-h-screen w-full flex-col gap-10 px-4;
+        @apply mt-50 flex min-h-screen w-full flex-col gap-10 px-4 md:px-8;
     }
 }
 

@@ -93,9 +93,9 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`dark no-scrollbar relative antialiased ${font_sans.variable} ${font_serif.variable} ${font_special.variable}`}
+                className={`dark no-scrollbar relative overflow-x-hidden antialiased ${font_sans.variable} ${font_serif.variable} ${font_special.variable}`}
             >
-                <ReactLenis root options={{ lerp: 0.15, allowNestedScroll: true }} />
+                <ReactLenis root options={{ overscroll: false, lerp: 0.15, allowNestedScroll: true }} />
                 <Grain />
                 {/* <SmoothCursor /> */}
                 <Navbar />
