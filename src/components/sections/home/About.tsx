@@ -93,6 +93,9 @@ export default function About() {
                     </p>
                 </div>
 
+                {/* Separator */}
+                <div className="bg-foreground-dimmer h-px w-full" />
+
                 <div className="flex max-w-1/2 flex-col">
                     <span className="text-foreground-dim cursor-default text-sm">MY EXPERIENCE</span>
                     <p className="text-lg leading-relaxed tracking-wide">
@@ -102,6 +105,9 @@ export default function About() {
                     </p>
                 </div>
             </div>
+
+            {/* Separator */}
+            <div className="bg-foreground-dimmer h-px w-full" />
 
             {/* OCTAVELABS */}
             <div className="mt-32 flex flex-col gap-12">
