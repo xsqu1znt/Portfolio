@@ -31,7 +31,7 @@ export default function FeaturedWork() {
     const headerFilter = useTransform(scrollYProgress, [0.2, 0.25], ["blur(0px)", "blur(2px)"]);
 
     return (
-        <section ref={sectionRef} id="work" className="section mt-50 items-center">
+        <section ref={sectionRef} id="work" className="section my-50 items-center">
             {/* Header */}
             <motion.div
                 className="pointer-events-none sticky top-1/3 left-0 -z-50 flex w-fit flex-col justify-center"

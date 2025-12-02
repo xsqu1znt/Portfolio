@@ -3,6 +3,7 @@
 import FitText from "@/components/layout/FitText";
 import AnimateNumber from "@/components/ui/AnimateNumber";
 import { easings } from "@/config/motion";
+import { useUserClient } from "@/hooks/useUserClient";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 
@@ -10,6 +11,7 @@ export default function About() {
     const sectionRef = useRef<HTMLDivElement>(null);
     const selfieRef = useRef<HTMLImageElement>(null);
 
+    const { isMobile } = useUserClient();
     const { scrollYProgress: sectionScrollYProgress } = useScroll({
         target: sectionRef,
         offset: ["start end", "start start"]
@@ -32,14 +34,14 @@ export default function About() {
             id="about"
             className="section light bg-background-primary"
             style={{
-                translateY: sectionTranslateY,
+                translateY: isMobile ? undefined : sectionTranslateY,
                 scale: sectionScale,
                 borderTopLeftRadius: sectionBorderRadius,
                 borderTopRightRadius: sectionBorderRadius
             }}
         >
             {/* Header */}
-            <div className="mt-16 flex h-fit flex-col gap-2">
+            <div className="my-16 flex h-fit flex-col gap-2">
                 {/* Heading */}
                 <div className="w-1/2 overflow-clip font-sans font-black tracking-tight">
                     <motion.div

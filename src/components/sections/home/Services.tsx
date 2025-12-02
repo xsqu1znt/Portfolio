@@ -28,9 +28,9 @@ export default function Services() {
             {/* Marquee/Separator */}
             <VelocityMarquee
                 baseVelocity={-2}
-                className="text-background-primary bg-accent my-16 rotate-2 py-6 font-sans text-4xl font-semibold tracking-tighter uppercase md:my-32 md:text-6xl"
+                className="text-background-primary bg-accent my-16 rotate-2 py-6 font-sans text-4xl font-semibold tracking-tighter uppercase shadow-lg md:my-32 md:text-6xl"
             >
-                <MarqueeItem text="Looking for a specific service?" />
+                <MarqueeItem text="Looking for a specific service? Contact me!" />
             </VelocityMarquee>
 
             {/* Wrapper/Extra Services */}

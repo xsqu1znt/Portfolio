@@ -33,13 +33,14 @@ function TestimonialCard({ imageSrc, flagSrc, name, handle, review }: Testimonia
                 {/* Info */}
                 <div className="flex flex-col">
                     <span className="font-sans font-semibold">{name}</span>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1 md:gap-2">
                         {flagSrc && (
                             <Image
                                 width={16}
                                 height={16}
                                 src={flagSrc}
                                 alt={`${flagSrc.split("/").pop()?.split(".").shift()} flag`}
+                                className="size-3 md:size-4"
                             />
                         )}
                         <span className="text-foreground-dim text-sm tracking-wide">@{handle}</span>
@@ -52,21 +53,23 @@ function TestimonialCard({ imageSrc, flagSrc, name, handle, review }: Testimonia
                     {/* Rating */}
                     <div className="flex items-end gap-2">
                         <div className="flex">
-                            <Star className="fill-accent-secondary size-5 stroke-0" />
-                            <Star className="fill-accent-secondary size-5 stroke-0" />
-                            <Star className="fill-accent-secondary size-5 stroke-0" />
-                            <Star className="fill-accent-secondary size-5 stroke-0" />
-                            <Star className="fill-accent-secondary size-5 stroke-0" />
+                            <Star className="fill-accent-secondary size-4 stroke-0 md:size-5" />
+                            <Star className="fill-accent-secondary size-4 stroke-0 md:size-5" />
+                            <Star className="fill-accent-secondary size-4 stroke-0 md:size-5" />
+                            <Star className="fill-accent-secondary size-4 stroke-0 md:size-5" />
+                            <Star className="fill-accent-secondary size-4 stroke-0 md:size-5" />
                         </div>
 
-                        <span className="text-foreground-dim text-sm leading-[1.1] font-semibold">5.0</span>
+                        <span className="text-foreground-dim text-xs leading-[1.1] font-semibold md:text-sm">5.0</span>
                     </div>
 
                     <div className="bg-foreground-dimmer h-px w-full" />
                 </div>
 
                 {/* Review */}
-                <p className="text-foreground-dim font-sans leading-relaxed tracking-wide">“{firstReview}”</p>
+                <p className="text-foreground-dim font-sans text-sm leading-relaxed tracking-wide md:text-base">
+                    “{firstReview}”
+                </p>
 
                 {/* Extra reviews */}
                 {extraReviews.map((text, idx) => (
@@ -82,7 +85,9 @@ function TestimonialCard({ imageSrc, flagSrc, name, handle, review }: Testimonia
                             </span>
                         </div>
 
-                        <p className="text-foreground-dim font-sans leading-relaxed tracking-wide">“{text}”</p>
+                        <p className="text-foreground-dim font-sans text-sm leading-relaxed tracking-wide md:text-base">
+                            “{text}”
+                        </p>
                     </div>
                 ))}
             </div>
@@ -100,21 +105,22 @@ export default function Testimonials() {
     const headerTranslateX = useTransform(scrollYProgress, [0, 1.1], ["5%", "-5%"]);
 
     return (
-        <section id="testimonials" className="section mt-50">
+        <section id="testimonials" className="section mt-[50vh] mb-[25vh]">
             <div className="border-foreground-dimmer w-full border-b text-right">
                 <motion.div
                     ref={headerRef}
-                    className="w-[75%] text-right"
+                    className="w-full text-center md:w-[75%] md:text-right"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, ease: easings.fluidInOut }}
                     style={{ translateX: headerTranslateX }}
                 >
-                    <SectionHeader title="What people say." />
+                    <h2 className="font-sans text-3xl font-bold tracking-tight md:text-6xl">What people say.</h2>
                 </motion.div>
             </div>
 
-            <div className="grid grid-cols-3 gap-12">
+            {/* TODO: Replace with carousel on mobile, maybe stacked cards on desktop */}
+            <div className="grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3">
                 {testimonials.map((data, idx) => (
                     <TestimonialCard key={idx} {...data} />
                 ))}
