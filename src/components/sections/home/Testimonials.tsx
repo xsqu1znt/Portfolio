@@ -52,11 +52,11 @@ function TestimonialCard({ imageSrc, flagSrc, name, handle, review }: Testimonia
                     {/* Rating */}
                     <div className="flex items-end gap-2">
                         <div className="flex">
-                            <Star className="fill-icon-active size-5 stroke-0" />
-                            <Star className="fill-icon-active size-5 stroke-0" />
-                            <Star className="fill-icon-active size-5 stroke-0" />
-                            <Star className="fill-icon-active size-5 stroke-0" />
-                            <Star className="fill-icon-active size-5 stroke-0" />
+                            <Star className="fill-accent-secondary size-5 stroke-0" />
+                            <Star className="fill-accent-secondary size-5 stroke-0" />
+                            <Star className="fill-accent-secondary size-5 stroke-0" />
+                            <Star className="fill-accent-secondary size-5 stroke-0" />
+                            <Star className="fill-accent-secondary size-5 stroke-0" />
                         </div>
 
                         <span className="text-foreground-dim text-sm leading-[1.1] font-semibold">5.0</span>

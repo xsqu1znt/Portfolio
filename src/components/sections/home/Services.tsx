@@ -1,16 +1,19 @@
 import ServiceCard from "@/components/cards/ServiceCard";
 import SectionHeader from "@/components/layout/SectionHeader";
-import ContactCTAButton from "@/components/ui/ContactCTAButton";
 import { MarqueeItem, VelocityMarquee } from "@/components/ui/VelocityMarquee";
 import { AddonServices, MainServices } from "@/constants/services";
 import { styles } from "@/constants/styles";
 
 export default function Services() {
     return (
-        <section id="services" className="section bg-background-secondary px-0 pb-16">
+        <section id="services" className="section bg-background-secondary clip-path-services px-0 py-16">
             {/* Header */}
-            <div className={`mt-16 w-full ${styles.padding.section}`}>
-                <SectionHeader title="SERVICES" description="Design clean. Build clever. Ship fast." />
+            <div className={`w-full ${styles.padding.section}`}>
+                <SectionHeader
+                    title="SERVICES"
+                    description="Design clean. Build clever. Ship fast."
+                    className="text-accent"
+                />
             </div>
 
             {/* Wrapper/Services */}
@@ -25,7 +28,7 @@ export default function Services() {
             {/* Marquee/Separator */}
             <VelocityMarquee
                 baseVelocity={-2}
-                className="text-background-primary bg-accent my-32 rotate-2 py-2 font-sans text-7xl font-semibold tracking-tighter uppercase"
+                className="text-background-primary bg-accent my-16 rotate-2 py-6 font-sans text-4xl font-semibold tracking-tighter uppercase md:my-32 md:text-6xl"
             >
                 <MarqueeItem text="Looking for a specific service?" />
             </VelocityMarquee>
@@ -38,11 +41,6 @@ export default function Services() {
                     ))}
                 </div>
             </div>
-
-            {/* CTA */}
-            {/* <div className={`w-full ${styles.padding.section}`}>
-                <ContactCTAButton label="Have a question or new idea?" />
-            </div> */}
         </section>
     );
 }

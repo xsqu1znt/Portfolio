@@ -42,7 +42,7 @@ function FAQAccordion({
                 {/* Button/Collapse */}
                 <div className="relative size-7">
                     <ChevronDown
-                        className={`text-foreground-dim absolute top-1/2 left-1/2 size-7 -translate-x-1/2 -translate-y-1/2 transition-all duration-300 group-hover:size-8 ${collapsed ? "" : "text-icon-active rotate-180"} stroke-[1.5px]`}
+                        className={`text-foreground-dim absolute top-1/2 left-1/2 size-7 -translate-x-1/2 -translate-y-1/2 transition-all duration-300 group-hover:size-8 ${collapsed ? "" : "text-accent-secondary rotate-180"} stroke-[1.5px]`}
                     />
                 </div>
             </button>

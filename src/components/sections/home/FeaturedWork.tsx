@@ -10,7 +10,7 @@ function Showreels({ className, children }: ComponentProps<"div">) {
     const cards = React.Children.toArray(children);
 
     return (
-        <div className={cn("flex w-full flex-col gap-100 md:max-w-[75%]", className)}>
+        <div className={cn("flex w-full flex-col gap-100", className)}>
             {cards.map((card, idx) => {
                 return (
                     <div key={idx} className={cn("flex w-full", idx % 2 && "justify-end")}>
@@ -37,18 +37,20 @@ export default function FeaturedWork() {
                 className="pointer-events-none sticky top-1/3 left-0 -z-50 flex w-fit flex-col justify-center"
                 style={{ opacity: headerOpacity, scale: headerScale, filter: headerFilter }}
             >
-                <motion.h2
-                    className="inline-block text-center font-sans text-4xl font-semibold tracking-tight md:text-6xl"
-                    viewport={{ once: true }}
-                    initial={{ opacity: 0, translateY: "100%" }}
-                    whileInView={{ opacity: 1, translateY: 0 }}
-                    transition={{ duration: 0.3, ease: easings.fluidInOut }}
-                >
-                    FEATURED WORK
-                </motion.h2>
+                <div className="overflow-hidden">
+                    <motion.h2
+                        className="inline-block text-center font-sans text-4xl font-semibold tracking-tight md:text-6xl"
+                        viewport={{ once: true }}
+                        initial={{ opacity: 0, translateY: "100%" }}
+                        whileInView={{ opacity: 1, translateY: 0 }}
+                        transition={{ duration: 0.3, ease: easings.fluidInOut }}
+                    >
+                        FEATURED WORK
+                    </motion.h2>
+                </div>
             </motion.div>
 
-            <Showreels className="mt-[50vh]">
+            <Showreels className="my-[50vh]">
                 <ShowreelCard src="/images/showreel/001.png" />
                 <ShowreelCard src="/images/showreel/001.png" alignment="right" />
                 <ShowreelCard src="/images/showreel/001.png" />

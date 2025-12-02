@@ -11,7 +11,7 @@ export default function Home() {
         <main className="flex w-full flex-col">
             <Hero />
             <FeaturedWork />
-            {/* <Services /> */}
+            <Services />
             {/* <Testimonials /> */}
             {/* <About /> */}
             {/* <FAQs /> */}

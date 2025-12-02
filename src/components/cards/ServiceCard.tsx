@@ -7,17 +7,14 @@ import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import Button from "../ui/Button";
 
-function ServiceHeader({
-    index,
-    title,
-    expanded,
-    toggleExpanded
-}: ServiceCardProps & { expanded: boolean; toggleExpanded: () => void }) {
+function ServiceHeader({ index, title, expanded }: ServiceCardProps & { expanded: boolean }) {
     return (
-        <button className="flex justify-between" onClick={toggleExpanded}>
+        <div className="flex justify-between">
             <div className="flex gap-3">
                 <span className="text-foreground-dim text-xs tracking-tighter">{`${index}`.padStart(3, "0")}</span>
-                <h3 className="text-2xl">{title}</h3>
+                <h3 className="group-hover:text-accent-secondary text-2xl transition-colors duration-300 md:text-3xl">
+                    {title}
+                </h3>
             </div>
 
             <div
@@ -29,17 +26,17 @@ function ServiceHeader({
                 <div
                     className={cn(
                         "absolute top-1/2 left-1/2 h-[1.5px] w-4 -translate-x-1/2 -translate-y-1/2 rotate-90 bg-[#7c7c81] transition-all duration-300",
-                        expanded && "bg-icon-active rotate-0"
+                        expanded && "bg-accent-secondary rotate-0"
                     )}
                 />
                 <div
                     className={cn(
                         "absolute top-1/2 left-1/2 h-[1.5px] w-4 -translate-x-1/2 -translate-y-1/2 bg-[#7c7c81] transition-all duration-300",
-                        expanded && "bg-icon-active"
+                        expanded && "bg-accent-secondary"
                     )}
                 />
             </div>
-        </button>
+        </div>
     );
 }
 
@@ -59,7 +56,7 @@ function ServiceDescriptionDefault({ description, subtext, price, expanded }: Se
             {/* Service/Description */}
             <div>
                 {description.map(desc => (
-                    <p key={desc} className="text-sm leading-relaxed font-light tracking-wide">
+                    <p key={desc} className="text-sm leading-relaxed font-light tracking-wide md:text-base">
                         {desc}
                     </p>
                 ))}
@@ -71,17 +68,27 @@ function ServiceDescriptionDefault({ description, subtext, price, expanded }: Se
 
                 {price.starting && (
                     <span className="text-foreground-dim text-xs tracking-tighter">
-                        Starting at<span className="text-foreground-primary text-2xl font-normal"> {price.starting}</span>
+                        Starting at
+                        <span className="bg-linear-to-br from-white to-white/50 bg-clip-text text-2xl font-normal text-transparent md:text-3xl">
+                            {" "}
+                            {price.starting}
+                        </span>
                     </span>
                 )}
                 {price.monthly && (
                     <span className="text-foreground-dim text-xs tracking-tighter">
-                        <span className="text-foreground-primary text-2xl font-normal">{price.monthly} </span> / month
+                        <span className="bg-linear-to-br from-white to-white/50 bg-clip-text text-2xl font-normal text-transparent md:text-3xl">
+                            {price.monthly}{" "}
+                        </span>{" "}
+                        / month
                     </span>
                 )}
                 {price.perPage && (
                     <span className="text-foreground-dim text-xs tracking-tighter">
-                        <span className="text-foreground-primary text-2xl font-normal">{price.perPage} </span> / page
+                        <span className="bg-linear-to-br from-white to-white/50 bg-clip-text text-2xl font-normal text-transparent md:text-3xl">
+                            {price.perPage}{" "}
+                        </span>{" "}
+                        / page
                     </span>
                 )}
             </div>
@@ -131,14 +138,18 @@ export default function ServiceCard(props: ServiceCardProps) {
         extraDetails: props.extraDetails || [] // Ensure extraDetails is an array
     };
 
-    const handleMouseOver = () => !isMobile && setExpanded(true);
-    const handleMouseLeave = () => (!isMobile || isMobile) && setExpanded(false);
-    const toggleExpanded = () => isMobile && setExpanded(prev => !prev);
+    // const handleMouseOver = () => !isMobile && setExpanded(true);
+    const handleMouseLeave = () => !isMobile && setExpanded(false);
+    const toggleExpanded = () => setExpanded(prev => !prev);
 
     return (
         // Add 'group' class to the main container to enable hover tracking for children
-        <div className="flex flex-col gap-3 px-4 py-6" onMouseEnter={handleMouseOver} onMouseLeave={handleMouseLeave}>
-            <ServiceHeader {...finalProps} expanded={expanded} toggleExpanded={toggleExpanded} />
+        <div
+            className="group flex cursor-pointer flex-col gap-3 px-4 py-6"
+            onMouseLeave={handleMouseLeave}
+            onClick={toggleExpanded}
+        >
+            <ServiceHeader {...finalProps} expanded={expanded} />
 
             {/* Accordion Container: This wrapper manages the dynamic height transition */}
             <div>

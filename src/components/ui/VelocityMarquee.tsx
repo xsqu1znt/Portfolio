@@ -65,7 +65,7 @@ export function VelocityMarquee({
     });
 
     return (
-        <div className={cn("flex flex-nowrap overflow-hidden whitespace-nowrap", className)}>
+        <div className={cn("flex flex-nowrap overflow-hidden whitespace-nowrap select-none", className)}>
             <motion.div className="flex flex-nowrap gap-4" style={{ x }}>
                 {/* Render children multiple times to ensure seamless looping */}
                 {children}

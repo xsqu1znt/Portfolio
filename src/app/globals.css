@@ -4,14 +4,13 @@
     --white: #eee8e0;
     --black: #000000;
     --accent: #69acf7;
+    --accent-secondary: #f7b569;
 
     --background-primary: var(--black);
     --background-secondary: #131313;
     --foreground-primary: var(--white);
     --foreground-dim: #e4e6ef80;
     --foreground-dimmer: #eee8e015;
-
-    --icon-active: #f7b569;
 }
 
 @custom-variant light (&:is(.light, .light *));
@@ -27,14 +26,13 @@
     --color-white: var(--white);
     --color-black: var(--black);
     --color-accent: var(--accent);
+    --color-accent-secondary: var(--accent-secondary);
 
     --color-background-primary: var(--background-primary);
     --color-background-secondary: var(--background-secondary);
     --color-foreground-primary: var(--foreground-primary);
     --color-foreground-dim: var(--foreground-dim);
     --color-foreground-dimmer: var(--foreground-dimmer);
-
-    --color-icon-active: var(--icon-active);
 
     --font-sans: var(--font-sans);
     --font-serif: var(--font-serif);

@@ -193,7 +193,7 @@ export default function Hero() {
                         icon={ArrowDown02Icon}
                         strokeWidth={2.5}
                         color="currentColor"
-                        className="text-icon-active -mr-1 size-4 transition-transform duration-300 group-hover:translate-y-0.5 md:size-4.5"
+                        className="text-accent-secondary -mr-1 size-4 transition-transform duration-300 group-hover:translate-y-0.5 md:size-4.5"
                     />
                 </motion.button>
             </div>

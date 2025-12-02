@@ -1,10 +1,10 @@
-import Footer from "@/components/layout/Footer";
 import Grain from "@/components/layout/Grain";
 import Navbar from "@/components/layout/Navbar";
 import ReactLenis from "lenis/react";
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./animations.css";
+import "./clipping.css";
 import "./globals.css";
 
 const font_sans = localFont({

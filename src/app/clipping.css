@@ -1,0 +1,16 @@
+/* Base style (for desktop/larger screens) */
+.clip-path-services {
+    /* Define the clip path */
+    clip-path: polygon(25% 0%, 0 0, 0 100%, 100% 100%, 100% 100px, 30% 100px);
+    /* Add other necessary styles like background, padding, etc. */
+}
+
+/* Media query to remove the clip path on mobile screens */
+@media (max-width: 768px) {
+    /* Adjust breakpoint as needed (e.g., 768px, 600px) */
+    .clip-path-services {
+        /* Set it to 'none' or 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' 
+           to essentially remove the clipping */
+        clip-path: none;
+    }
+}

@@ -155,7 +155,7 @@ export default function Navbar() {
                             >
                                 <div
                                     className={cn(
-                                        "bg-icon-active absolute right-0 h-0.5 w-6 origin-center transition-all duration-300",
+                                        "bg-accent-secondary absolute right-0 h-0.5 w-6 origin-center transition-all duration-300",
                                         menuClicked ? "top-1/2 translate-y-1/2" : "top-0",
                                         isMenuOpen
                                             ? "top-1/2 z-[1] w-6 translate-[1px] -rotate-45 rounded-md bg-red-400 outline-2 outline-[#161616]"
@@ -166,7 +166,7 @@ export default function Navbar() {
                                 />
                                 <div
                                     className={cn(
-                                        "bg-icon-active absolute right-0 bottom-0 h-0.5 w-4 origin-center rounded-md transition-all duration-300",
+                                        "bg-accent-secondary absolute right-0 bottom-0 h-0.5 w-4 origin-center rounded-md transition-all duration-300",
                                         menuClicked ? "bottom-1/2 translate-y-[3px]" : "bottom-0",
                                         isMenuOpen
                                             ? "bottom-1/2 w-6 translate-y-[3px] rotate-45 bg-red-400 outline-2 outline-[#161616]"
@@ -191,8 +191,8 @@ export default function Navbar() {
                 <div className="flex items-center justify-end md:hidden">
                     <button className={cn("relative mr-2 flex w-6 cursor-pointer items-center gap-2 md:hidden")}>
                         <div className="flex flex-col items-end gap-3">
-                            <div className="bg-icon-active h-0.5 w-7" />
-                            <div className="bg-icon-active h-0.5 w-5" />
+                            <div className="bg-accent-secondary h-0.5 w-7" />
+                            <div className="bg-accent-secondary h-0.5 w-5" />
                         </div>
                     </button>
                 </div>
