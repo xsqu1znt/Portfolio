@@ -1,7 +1,7 @@
 /* Base style (for desktop/larger screens) */
 .clip-path-services {
     /* Define the clip path */
-    clip-path: polygon(25% 0%, 0 0, 0 100%, 100% 100%, 100% 100px, 30% 100px);
+    clip-path: polygon(40% 0%, 0 0, 0 100%, 100% 100%, 100% 100px, 50% 100px);
     /* Add other necessary styles like background, padding, etc. */
 }
 

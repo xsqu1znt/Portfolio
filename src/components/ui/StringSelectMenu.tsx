@@ -133,7 +133,7 @@ export default function StringSelectMenu({
                     <NoTouchPropagation>
                         <motion.ul
                             className={cn(
-                                "no-scrollbar divide-foreground-dimmer absolute z-10 max-h-52 w-full touch-pan-y divide-y overflow-x-hidden overflow-y-auto scroll-smooth border border-white/5 bg-[#141312]",
+                                "no-scrollbar divide-foreground-dimmer absolute z-10 max-h-52 w-full touch-pan-y divide-y overflow-x-hidden overflow-y-auto border border-white/5 bg-[#141312]",
                                 direction === "top"
                                     ? "bottom-full border-b-transparent"
                                     : "top-full rounded-b-md border-t-transparent"

@@ -43,7 +43,7 @@
 
 @layer base {
     body {
-        @apply bg-background-primary text-foreground-primary min-h-screen min-w-80 scroll-smooth font-serif transition-colors duration-300;
+        @apply bg-background-primary text-foreground-primary min-h-screen min-w-80 font-serif transition-colors duration-300;
     }
 
     .section {

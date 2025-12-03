@@ -11,34 +11,47 @@ import { useRef, useState } from "react";
 import Button from "../ui/Button";
 import { styles } from "@/constants/styles";
 
-function NavLink({ label, sectionId }: { label: string; sectionId: string }) {
+function NavLink({ label, sectionId, isDarkMode }: { label: string; sectionId: string; isDarkMode?: boolean }) {
     const lenis = useLenis();
 
     const scrollTo = () => {
-        lenis?.scrollTo(`#${sectionId}`, { duration: 2, offset: -100 });
+        lenis?.scrollTo(`#${sectionId}`, { duration: 2 });
     };
 
     return (
-        <a className="group relative inline-block cursor-pointer" onClick={scrollTo}>
+        <a className={"group relative inline-block cursor-pointer"} onClick={scrollTo}>
             <span className="transition-opacity duration-300 group-hover:opacity-75">{label}</span>
-            <div className="absolute bottom-1 left-1/2 h-[1.25px] w-0 -translate-x-1/2 bg-white transition-all duration-300 group-hover:w-full" />
+            <div
+                className={cn(
+                    "absolute bottom-1 left-1/2 h-[1.25px] w-0 -translate-x-1/2 bg-white transition-all duration-300 group-hover:w-full",
+                    isDarkMode && "bg-black"
+                )}
+            />
         </a>
     );
 }
 
-function NavLinkList({ links, className }: { links: { label: string; sectionId: string }[]; className?: string }) {
+function NavLinkList({
+    links,
+    isDarkMode,
+    className
+}: {
+    links: { label: string; sectionId: string }[];
+    isDarkMode?: boolean;
+    className?: string;
+}) {
     return (
         <ul className={cn("flex items-center gap-6 place-self-center font-sans text-lg font-medium", className)}>
             {links.map(link => (
                 <li key={link.sectionId}>
-                    <NavLink {...link} />
+                    <NavLink {...link} isDarkMode={isDarkMode} />
                 </li>
             ))}
         </ul>
     );
 }
 
-export default function Navbar() {
+export default function Navbar({ isDarkMode }: { isDarkMode?: boolean }) {
     const lenis = useLenis();
 
     const [hidden, setHidden] = useState(false);
@@ -98,12 +111,16 @@ export default function Navbar() {
         }
     };
 
-    const handleScrollContact = () => {
-        lenis?.scrollTo("#contact", { offset: -100, duration: 2 });
+    const scrollToTop = () => {
+        lenis?.scrollTo(0, { duration: 2 });
+    };
+
+    const scrollToContact = () => {
+        lenis?.scrollTo("#contact", { duration: 2 });
     };
 
     return (
-        <div className={cn("fixed top-0 left-0 z-50 w-full transition-all duration-300")}>
+        <div className={cn("fixed top-0 left-0 z-50 w-full transition-colors duration-300", isDarkMode && "text-black")}>
             <motion.header
                 className={`relative grid grid-cols-2 md:grid-cols-3 ${styles.padding.navbar}`}
                 initial={{ opacity: 0, translateY: "-200%" }}
@@ -111,12 +128,12 @@ export default function Navbar() {
                 transition={{ delay: 0.75, duration: 1, ease: easings.fluidInOut }}
             >
                 {/* Logo */}
-                <a
-                    href="/"
-                    className="w-fit cursor-pointer place-content-center font-sans text-2xl font-semibold transition-all duration-300 hover:opacity-75"
+                <button
+                    className="w-fit cursor-pointer place-content-center font-sans text-2xl font-semibold transition-opacity duration-300 hover:opacity-75"
+                    onClick={scrollToTop}
                 >
                     GG
-                </a>
+                </button>
 
                 {/* Links */}
                 <NavLinkList
@@ -126,6 +143,7 @@ export default function Navbar() {
                         { label: "Services", sectionId: "services" },
                         { label: "About", sectionId: "about" }
                     ]}
+                    isDarkMode={isDarkMode}
                 />
 
                 {/* <div
@@ -182,7 +200,7 @@ export default function Navbar() {
 
                 {/* CTA/Contact */}
                 <div className="hidden items-center justify-end md:flex">
-                    <Button variant="transparent" label="CONTACT" className="p-0" onClick={handleScrollContact}>
+                    <Button variant="transparent" label="CONTACT" className="p-0" onClick={scrollToContact}>
                         <ChevronRight className="size-5 stroke-[1.5px]" />
                     </Button>
                 </div>

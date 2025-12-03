@@ -1,51 +1,103 @@
 "use client";
 
 import FitText from "@/components/layout/FitText";
+import { useNavContext } from "@/components/provider/NavProvider";
 import AnimateNumber from "@/components/ui/AnimateNumber";
 import { easings } from "@/config/motion";
 import { useUserClient } from "@/hooks/useUserClient";
-import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import { cn } from "@/lib/utils";
+import { motion, useInView, useScroll, useTransform } from "motion/react";
+import { useEffect, useRef } from "react";
+
+function SplitWord({
+    text,
+    duration,
+    stagger,
+    initialDelay,
+    viewMargin,
+    className
+}: {
+    text: string;
+    duration?: number;
+    stagger?: number;
+    initialDelay?: number;
+    viewMargin?: string;
+    className?: string;
+}) {
+    const words = text.split(" ");
+
+    return (
+        <div className={cn("overflow-hidden", className)}>
+            {words.map((word, wordIndex) => {
+                return (
+                    <motion.span
+                        key={wordIndex}
+                        className="mr-1 inline-block"
+                        viewport={{ margin: viewMargin }}
+                        initial={{ opacity: 0, filter: "blur(4px)" }}
+                        whileInView={{ opacity: 1, filter: "blur(0px)" }}
+                        transition={{
+                            delay: (initialDelay ?? 0) + (stagger ? stagger * wordIndex : 0),
+                            duration,
+                            ease: "easeInOut"
+                        }}
+                    >
+                        {word}
+                    </motion.span>
+                );
+            })}
+        </div>
+    );
+}
 
 export default function About() {
+    const { setNavDarkMode } = useNavContext();
+    // const { isMobile } = useUserClient();
     const sectionRef = useRef<HTMLDivElement>(null);
-    const selfieRef = useRef<HTMLImageElement>(null);
+    // const selfieRef = useRef<HTMLImageElement>(null);
 
-    const { isMobile } = useUserClient();
+    const sectionInView = useInView(sectionRef, { amount: 0.95 });
+
+    useEffect(() => {
+        if (sectionInView) {
+            setNavDarkMode(true);
+        } else {
+            setNavDarkMode(false);
+        }
+    }, [sectionInView]);
+
     const { scrollYProgress: sectionScrollYProgress } = useScroll({
         target: sectionRef,
         offset: ["start end", "start start"]
     });
 
-    const sectionBorderRadius = useTransform(sectionScrollYProgress, [0, 1], ["5rem", "0rem"]);
     const sectionScale = useTransform(sectionScrollYProgress, [0, 1], [0.9, 1]);
-    const sectionTranslateY = useTransform(sectionScrollYProgress, [0, 0.5], [200, 0]);
+    const sectionBorderRadius = useTransform(sectionScrollYProgress, [0, 1], ["3rem", "0rem"]);
 
-    const { scrollYProgress } = useScroll({
+    /* const { scrollYProgress } = useScroll({
         target: selfieRef,
         offset: ["start end", "end start"]
-    });
+    }); */
 
-    const objectPosition = useTransform(scrollYProgress, [0, 1], ["0% 10%", "0% 40%"]);
+    // const objectPosition = useTransform(scrollYProgress, [0, 1], ["0% 10%", "0% 40%"]);
 
     return (
         <motion.section
             ref={sectionRef}
             id="about"
-            className="section light bg-background-primary"
+            className="section light bg-background-secondary py-16"
             style={{
-                translateY: isMobile ? undefined : sectionTranslateY,
                 scale: sectionScale,
                 borderTopLeftRadius: sectionBorderRadius,
                 borderTopRightRadius: sectionBorderRadius
             }}
         >
             {/* Header */}
-            <div className="my-16 flex h-fit flex-col gap-2">
+            <div className="flex h-fit flex-col gap-2">
                 {/* Heading */}
-                <div className="w-1/2 overflow-clip font-sans font-black tracking-tight">
+                <div className="overflow-hidden font-sans font-black tracking-tight md:w-1/2">
                     <motion.div
-                        viewport={{ once: true }}
+                        // viewport={{ once: true }}
                         initial={{ opacity: 0, translateY: "100%" }}
                         whileInView={{ opacity: 1, translateY: 0 }}
                         transition={{ duration: 0.5, ease: easings.fluidInOut }}
@@ -57,42 +109,45 @@ export default function About() {
                 {/* Separator */}
                 <motion.div
                     className="bg-foreground-dimmer h-px"
-                    viewport={{ once: true }}
+                    // viewport={{ once: true }}
                     initial={{ width: 0 }}
                     whileInView={{ width: "100%" }}
                     transition={{ delay: 0.3, duration: 0.5, ease: easings.fluidInOut }}
                 />
 
                 {/* Paragraph */}
-                <div>
-                    <div className="overflow-clip">
-                        <motion.p
-                            className="inline-block max-w-1/2 pt-2 text-lg tracking-wide"
-                            viewport={{ once: true }}
-                            initial={{ opacity: 0, translateY: "100%", filter: "blur(16px)" }}
-                            whileInView={{ opacity: 1, translateY: 0, filter: "blur(0px)" }}
-                            transition={{ delay: 0.3, duration: 0.5, ease: easings.fluidInOut }}
-                        >
-                            I'm Gunique — a web developer & designer building functional interfaces, modern
-                        </motion.p>
-                    </div>
+                <SplitWord
+                    text="I'm Gunique — a web developer & designer building functional interfaces, modern branding, and fast, scalable websites for startups & creators."
+                    className="md:max-w-1/2 md:text-lg md:tracking-wide"
+                    duration={0.3}
+                    stagger={0.03}
+                />
+            </div>
 
-                    <div className="overflow-clip">
-                        <motion.p
-                            className="inline-block max-w-1/2 pt-2 text-lg tracking-wide"
-                            viewport={{ once: true }}
-                            initial={{ opacity: 0, translateY: "100%", filter: "blur(16px)" }}
-                            whileInView={{ opacity: 1, translateY: 0, filter: "blur(0px)" }}
-                            transition={{ delay: 0.35, duration: 0.5, ease: easings.fluidInOut }}
-                        >
-                            branding, and fast, scalable websites for startups & creators.
-                        </motion.p>
-                    </div>
-                </div>
+            <div className="flex flex-col items-end">
+                <img src="/images/IMG_2849_BW.jpg" alt="" className="w-full -scale-x-100 object-cover md:w-1/2" />
+
+                <SplitWord
+                    text="I design and develop custom websites, landing pages, and UI systems that help brands feel modern and communicate clearly. My work blends minimal design with strong structure, tight typography, and high functionality."
+                    className="md:w-1/2 md:tracking-wide"
+                    duration={0.3}
+                    stagger={0.01}
+                />
+                {/* <motion.p
+                    className="inline-block tracking-wide md:w-1/2"
+                    viewport={{ margin: "-100px" }}
+                    initial={{ opacity: 0, translateY: -15, filter: "blur(16px)" }}
+                    whileInView={{ opacity: 1, translateY: 0, filter: "blur(0px)" }}
+                    transition={{ duration: 0.5, ease: easings.fluidInOut }}
+                >
+                    I design and develop custom websites, landing pages, and UI systems that help brands look modern and
+                    communicate clearly. My work blends minimal design with strong structure, tight typography, and high
+                    functionality.
+                </motion.p> */}
             </div>
 
             {/* Selfie */}
-            <div className="grid grid-cols-2 gap-12">
+            {/* <div className="grid grid-cols-2 gap-12">
                 <div />
                 <div className="flex flex-col gap-4">
                     <motion.img
@@ -119,10 +174,10 @@ export default function About() {
                         functionality.
                     </motion.p>
                 </div>
-            </div>
+            </div> */}
 
             {/* Numbers */}
-            <div className="mt-64 grid grid-cols-2 gap-12">
+            {/* <div className="mt-64 grid grid-cols-2 gap-12">
                 <div className="overflow-clip">
                     <motion.h3
                         className="inline-block cursor-default font-sans text-6xl font-semibold"
@@ -181,20 +236,20 @@ export default function About() {
                         </span>
                     </motion.div>
                 </div>
-            </div>
+            </div> */}
 
             {/* Separator */}
-            <motion.div
+            {/* <motion.div
                 className="bg-foreground-dimmer h-px w-full"
                 viewport={{ once: true }}
                 initial={{ width: 0 }}
                 whileInView={{ width: "100%" }}
                 transition={{ delay: 0.3, duration: 0.5, ease: easings.fluidInOut }}
-            />
+            /> */}
 
             {/* Extra */}
-            <div className="flex flex-col gap-12">
-                <motion.div
+            {/* <div className="flex flex-col gap-12"> */}
+            {/* <motion.div
                     className="grid grid-cols-2 gap-12"
                     viewport={{ margin: "-250px", once: true }}
                     initial={{ opacity: 0, translateY: -25, filter: "blur(16px)" }}
@@ -209,18 +264,18 @@ export default function About() {
                         I follow a simple process that keeps everything predictable: Research. Wireframes. Design.
                         Development. Launch. Support. Clients always know what stage we're in and what's coming next.
                     </p>
-                </motion.div>
+                </motion.div> */}
 
-                {/* Separator */}
-                <motion.div
+            {/* Separator */}
+            {/* <motion.div
                     className="bg-foreground-dimmer h-px w-full"
                     viewport={{ once: true }}
                     initial={{ width: 0 }}
                     whileInView={{ width: "100%" }}
                     transition={{ delay: 0.3, duration: 0.5, ease: easings.fluidInOut }}
-                />
+                /> */}
 
-                <motion.div
+            {/* <motion.div
                     className="grid grid-cols-2 gap-12"
                     viewport={{ margin: "-250px", once: true }}
                     initial={{ opacity: 0, translateY: -25, filter: "blur(16px)" }}
@@ -236,8 +291,8 @@ export default function About() {
                         and custom tools. I handle both design and development, so projects stay consistent from start to
                         finish.
                     </p>
-                </motion.div>
-            </div>
+                </motion.div> */}
+            {/* </div> */}
 
             {/* Separator */}
             {/* <motion.div
@@ -261,8 +316,7 @@ export default function About() {
                     </div>
 
                     <div className="h-64 w-full border border-white/5 bg-white/5" />
-                </div>
-            </div> */}
+                </div> */}
         </motion.section>
     );
 }

@@ -6,6 +6,7 @@ import localFont from "next/font/local";
 import "./animations.css";
 import "./clipping.css";
 import "./globals.css";
+import NavProvider from "@/components/provider/NavProvider";
 
 const font_sans = localFont({
     variable: "--font-sans",
@@ -98,8 +99,7 @@ export default function RootLayout({
                 <ReactLenis root options={{ overscroll: false, lerp: 0.15, allowNestedScroll: true }} />
                 <Grain />
                 {/* <SmoothCursor /> */}
-                <Navbar />
-                {children}
+                <NavProvider>{children}</NavProvider>
                 {/* <Footer /> */}
             </body>
         </html>
