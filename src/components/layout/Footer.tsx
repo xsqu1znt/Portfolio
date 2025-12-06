@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { styles } from "@/constants/styles";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowDown02Icon, ArrowRight02Icon } from "@hugeicons/core-free-icons";
+import Snowfall from "react-snowfall";
 
 interface ArrowLinkProps {
     label: string;
@@ -160,17 +161,16 @@ export default function Footer() {
     return (
         <div className="relative mt-25 flex min-h-screen flex-col justify-end overflow-hidden">
             {/* Snow */}
-            <video
-                src="/videos/overlays/snow.mp4"
-                autoPlay
-                loop
-                muted
-                className="absolute bottom-0 left-0 -z-50 w-screen opacity-15 md:top-0 md:bottom-auto"
-                style={{
-                    maskImage: "linear-gradient(to bottom, transparent, black)",
-                    WebkitMaskImage: "linear-gradient(to bottom, transparent, black)"
-                }}
-            />
+            <div className="absolute top-0 left-0 -z-50 h-full w-screen opacity-25">
+                <Snowfall
+                    wind={[-0.5, 3]}
+                    snowflakeCount={200}
+                    style={{
+                        maskImage: "linear-gradient(to bottom, transparent, black)",
+                        WebkitMaskImage: "linear-gradient(to bottom, transparent, black)"
+                    }}
+                />
+            </div>
 
             {/* Header */}
             <h3 className={`${styles.padding.section} text-center text-2xl`}>Building spaces that inspire connections.</h3>
