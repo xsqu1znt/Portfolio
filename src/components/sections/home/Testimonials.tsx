@@ -105,7 +105,7 @@ export default function Testimonials() {
     const headerTranslateX = useTransform(scrollYProgress, [0, 1.1], ["5%", "-5%"]);
 
     return (
-        <section id="testimonials" className="section mt-[50vh] mb-[25vh]">
+        <section id="testimonials" className="section my-50">
             <div className="border-foreground-dimmer w-full border-b text-right">
                 <motion.div
                     ref={headerRef}

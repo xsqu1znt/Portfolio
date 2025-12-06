@@ -7,6 +7,7 @@ import "./animations.css";
 import "./clipping.css";
 import "./globals.css";
 import NavProvider from "@/components/provider/NavProvider";
+import Footer from "@/components/layout/Footer";
 
 const font_sans = localFont({
     variable: "--font-sans",
@@ -100,7 +101,7 @@ export default function RootLayout({
                 <Grain />
                 {/* <SmoothCursor /> */}
                 <NavProvider>{children}</NavProvider>
-                {/* <Footer /> */}
+                <Footer />
             </body>
         </html>
     );

@@ -1,7 +1,7 @@
 import React, { useRef, useState, useLayoutEffect, useEffect } from "react";
 
 interface FitTextProps {
-    children: string;
+    children: React.ReactNode;
     className?: string;
     minFontSize?: number;
     maxFontSize?: number;

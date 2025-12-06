@@ -1,10 +1,11 @@
 import { useHandleClickOutside } from "@/hooks/useHandleClickOutside";
 import { cn } from "@/lib/utils";
-import { ChevronDown } from "lucide-react";
+import { ArrowDown01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { useLenis } from "lenis/react";
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { NoTouchPropagation } from "../common/NoTouchPropagation";
-import { useLenis } from "lenis/react";
 
 export type StringSelectStyles = "primary";
 export type StringSelectSizes = "normal";
@@ -118,13 +119,10 @@ export default function StringSelectMenu({
                 >
                     <span className={cn("text-nowrap")}>{!selected && placeholder ? placeholder : selected?.label}</span>
                     <div className={"relative -mr-2 size-7"}>
-                        <ChevronDown
-                            className={cn(
-                                "absolute top-1/2 left-1/2 size-7 -translate-x-1/2 -translate-y-1/2 stroke-[1.5px] transition-all duration-300 group-hover:size-8",
-                                direction === "top" && "rotate-180",
-                                isOpen && "text-accent-secondary",
-                                isOpen && (direction === "top" ? "rotate-0" : "rotate-180")
-                            )}
+                        <HugeiconsIcon
+                            icon={ArrowDown01Icon}
+                            color="currentColor"
+                            className="absolute top-1/2 left-1/2 size-7 -translate-x-1/2 -translate-y-1/2 stroke-[1.5px] transition-all duration-300 group-hover:size-8"
                         />
                     </div>
                 </button>

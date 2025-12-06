@@ -4,7 +4,8 @@ import SectionHeader from "@/components/layout/SectionHeader";
 import { FAQ } from "@/constants/faqs";
 import { styles } from "@/constants/styles";
 import { cn } from "@/lib/utils";
-import { ChevronDown } from "lucide-react";
+import { ArrowDown01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { ComponentProps, useState } from "react";
 
 function FAQAccordion({
@@ -26,7 +27,7 @@ function FAQAccordion({
         <div
             {...props}
             className={cn(
-                `group flex w-full flex-col gap-2 border border-t-transparent border-r-transparent border-l-transparent bg-transparent px-4 py-4.5 font-serif transition-all duration-300 ${collapsed ? "" : "rounded-md border-t-white/5 border-r-white/5 border-l-white/5 bg-black/5 shadow-[0_0_32px_2px] shadow-black/5"}`,
+                `group flex w-full flex-col gap-2 border border-transparent px-4 py-4.5 font-serif transition-all duration-300 ${collapsed ? "" : "bg-background-primary border-foreground-dimmer rounded-md shadow-[0_0_32px_2px] shadow-black/5"}`,
                 className
             )}
         >
@@ -41,8 +42,10 @@ function FAQAccordion({
 
                 {/* Button/Collapse */}
                 <div className="relative size-7">
-                    <ChevronDown
-                        className={`text-foreground-dim absolute top-1/2 left-1/2 size-7 -translate-x-1/2 -translate-y-1/2 transition-all duration-300 group-hover:size-8 ${collapsed ? "" : "text-accent-secondary rotate-180"} stroke-[1.5px]`}
+                    <HugeiconsIcon
+                        icon={ArrowDown01Icon}
+                        color="currentColor"
+                        className={`absolute top-1/2 left-1/2 size-7 -translate-x-1/2 -translate-y-1/2 transition-all duration-300 group-hover:size-8 ${collapsed ? "text-foreground-dim" : "text-accent-secondary rotate-180"} stroke-[1.5px]`}
                     />
                 </div>
             </button>
@@ -82,7 +85,7 @@ function FAQList() {
                     {...faq}
                     collapsed={i !== opened}
                     toggleCollapse={() => toggleCollapse(i)}
-                    className={`border-b-transparent ${opened !== i + 1 && i + 1 !== FAQ.length ? "border-b-foreground-dimmer" : ""}`}
+                    className={`${opened !== i + 1 && i + 1 !== FAQ.length ? "border-b-foreground-dimmer" : ""}`}
                 />
             ))}
         </div>
@@ -91,10 +94,9 @@ function FAQList() {
 
 export default function FAQs() {
     return (
-        <section id="faq" className="section light bg-background-primary px-0">
+        <section id="faq" className="bg-background-secondary section light px-0">
             <div
-                className={`bg-background-secondary border-foreground-dimmer relative mt-64 h-full w-full border-t pb-16 ${styles.padding.section}`}
-                // style={{ clipPath: "polygon(0 0, 100% 5%, 100% 100%, 0% 100%)" }}
+                className={`border-foreground-dimmer relative h-full w-full py-16 ${styles.padding.section} clip-path-services bg-background-primary`}
             >
                 <div className="absolute top-0 left-0 h-12 w-full bg-linear-to-b from-black/2 to-transparent" />
                 <SectionHeader title="FAQs" description="Let's keep it simple." />

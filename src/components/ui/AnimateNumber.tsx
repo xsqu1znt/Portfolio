@@ -14,7 +14,7 @@ export default function AnimateNumber({ value, direction = "up", className }: Pr
         damping: 100,
         stiffness: 200
     });
-    const isInView = useInView(ref, { once: true, margin: "-250px" });
+    const isInView = useInView(ref, { once: true /* margin: "-250px" */ });
 
     useEffect(() => {
         if (isInView) {

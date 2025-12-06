@@ -158,14 +158,14 @@ export default function Footer() {
     };
 
     return (
-        <div className="relative flex min-h-screen flex-col justify-end overflow-hidden">
+        <div className="relative mt-25 flex min-h-screen flex-col justify-end overflow-hidden">
             {/* Snow */}
             <video
                 src="/videos/overlays/snow.mp4"
                 autoPlay
                 loop
                 muted
-                className="absolute top-0 left-0 -z-50 w-screen opacity-15"
+                className="absolute bottom-0 left-0 -z-50 w-screen opacity-15 md:top-0 md:bottom-auto"
                 style={{
                     maskImage: "linear-gradient(to bottom, transparent, black)",
                     WebkitMaskImage: "linear-gradient(to bottom, transparent, black)"
@@ -179,7 +179,7 @@ export default function Footer() {
             <footer className="mt-8 flex flex-col">
                 {/* Wrapper/Margin */}
                 <div className={styles.padding.section}>
-                    <div className="border-foreground-dimmer relative grid w-full grid-cols-3 border-t py-8">
+                    <div className="border-foreground-dimmer relative grid w-full grid-cols-1 gap-6 border-t py-8 md:grid-cols-3 md:gap-0">
                         <LabeledList label="CONTACT">
                             <ul className="mb-4 font-sans text-2xl">
                                 <li>Hawaii, USA</li>
@@ -262,11 +262,11 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="relative flex items-center justify-center overflow-hidden font-sans text-[21rem] leading-[0.9] font-semibold tracking-tighter select-none">
+                <div className="relative flex items-center justify-center overflow-hidden select-none">
                     <VelocityMarquee baseVelocity={-1}>
                         <MarqueeItem
                             text="GUNIQUE"
-                            className="bg-linear-to-b from-white/15 to-white/5 bg-clip-text text-transparent"
+                            className="bg-linear-to-b from-white/15 to-white/5 bg-clip-text font-sans text-[10rem] leading-[0.9] font-semibold tracking-tighter text-transparent md:text-[21rem]"
                         />
                     </VelocityMarquee>
 
