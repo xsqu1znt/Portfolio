@@ -72,9 +72,9 @@ export default function StringSelectMenu({
 
     useEffect(() => {
         if (isOpen) {
-            document.body.style.overflowY = "hidden";
+            document.body.style.overflow = "hidden";
         } else {
-            document.body.style.overflowY = "";
+            document.body.style.overflow = "";
         }
 
         if (!isOpen) return;
@@ -88,7 +88,10 @@ export default function StringSelectMenu({
         };
 
         document.addEventListener("keydown", handleKeyDown);
-        return () => document.removeEventListener("keydown", handleKeyDown);
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+            document.body.style.overflow = "";
+        };
     }, [isOpen]);
 
     const toggleOpen = () => {

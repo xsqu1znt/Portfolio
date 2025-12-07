@@ -25,7 +25,6 @@ export default function NavProvider({ children }: { children: React.ReactNode })
                         opacity: isNavOpen ? 0 : 1,
                         rotate: isNavOpen ? 5 : 0,
                         translateY: isNavOpen ? "50vh" : 0
-                        // scale: isNavOpen ? 1.2 : 1
                     }}
                     transition={{ duration: 0.5, ease: easings.fluidInOut }}
                 >

@@ -125,18 +125,20 @@ function NavMenuToggle({ isMenuOpen, toggleMenuOpen }: { isMenuOpen: boolean; to
 export default function Navbar({ isDarkMode, setNavOpen }: { isDarkMode?: boolean; setNavOpen: (prev: boolean) => void }) {
     const lenis = useLenis();
 
-    const [menuClicked, setMenuClicked] = useState(false);
-    const [menuHovered, setMenuHovered] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
         if (isMenuOpen) {
-            document.body.style.overflowY = "hidden";
+            document.body.style.overflow = "hidden";
         } else {
-            document.body.style.overflowY = "";
+            document.body.style.overflow = "";
         }
 
         setNavOpen(isMenuOpen);
+
+        return () => {
+            document.body.style.overflow = "";
+        };
     }, [isMenuOpen]);
 
     const scrollToTop = () => {
