@@ -1,12 +1,14 @@
 "use client";
 
 import SectionHeader from "@/components/layout/SectionHeader";
+import { useNavContext } from "@/components/provider/NavProvider";
 import { FAQ } from "@/constants/faqs";
 import { styles } from "@/constants/styles";
 import { cn } from "@/lib/utils";
 import { ArrowDown01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ComponentProps, useState } from "react";
+import { useMotionValueEvent, useScroll } from "motion/react";
+import { ComponentProps, useRef, useState } from "react";
 
 function FAQAccordion({
     index,
@@ -93,8 +95,25 @@ function FAQList() {
 }
 
 export default function FAQs() {
+    const { setNavDarkMode } = useNavContext();
+    const sectionRef = useRef<HTMLDivElement>(null);
+
+    const { scrollYProgress: darkModeScrollProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start start", "end start"]
+    });
+
+    // 2. Listen to changes. If progress is between 0 and 1, we are within the target area.
+    useMotionValueEvent(darkModeScrollProgress, "change", latest => {
+        if (latest > 0 && latest < 1) {
+            setNavDarkMode(true);
+        } else {
+            setNavDarkMode(false);
+        }
+    });
+
     return (
-        <section id="faq" className="bg-background-secondary section light px-0">
+        <section ref={sectionRef} id="faq" className="bg-background-secondary section light px-0">
             <div
                 className={`border-foreground-dimmer relative h-full w-full py-16 ${styles.padding.section} clip-path-services bg-background-primary`}
             >

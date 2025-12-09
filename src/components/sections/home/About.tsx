@@ -5,10 +5,9 @@ import { useNavContext } from "@/components/provider/NavProvider";
 import AnimateNumber from "@/components/ui/AnimateNumber";
 import { easings } from "@/config/motion";
 import { styles } from "@/constants/styles";
-import { useUserClient } from "@/hooks/useUserClient";
 import { cn } from "@/lib/utils";
-import { motion, useInView, useScroll, useTransform } from "motion/react";
-import { useEffect, useRef } from "react";
+import { motion, useMotionValueEvent, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
 
 function SplitWord({
     text,
@@ -66,17 +65,21 @@ function Separator() {
 export default function About() {
     const { setNavDarkMode } = useNavContext();
     const sectionRef = useRef<HTMLDivElement>(null);
-    // const selfieRef = useRef<HTMLImageElement>(null);
+    const selfieRef = useRef<HTMLImageElement>(null);
 
-    const sectionInView = useInView(sectionRef, { amount: 0.95 });
+    const { scrollYProgress: darkModeScrollProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start start", "end start"]
+    });
 
-    useEffect(() => {
-        if (sectionInView) {
+    // 2. Listen to changes. If progress is between 0 and 1, we are within the target area.
+    useMotionValueEvent(darkModeScrollProgress, "change", latest => {
+        if (latest > 0 && latest < 1) {
             setNavDarkMode(true);
         } else {
             setNavDarkMode(false);
         }
-    }, [sectionInView]);
+    });
 
     const { scrollYProgress: sectionScrollYProgress } = useScroll({
         target: sectionRef,
@@ -86,12 +89,12 @@ export default function About() {
     const sectionScale = useTransform(sectionScrollYProgress, [0, 1], [0.9, 1]);
     const sectionBorderRadius = useTransform(sectionScrollYProgress, [0, 1], ["3rem", "0rem"]);
 
-    /* const { scrollYProgress } = useScroll({
+    const { scrollYProgress } = useScroll({
         target: selfieRef,
         offset: ["start end", "end start"]
-    }); */
+    });
 
-    // const objectPosition = useTransform(scrollYProgress, [0, 1], ["0% 10%", "0% 40%"]);
+    const selfie_objectPosition = useTransform(scrollYProgress, [0, 1], ["0% 0%", "0% 100%"]);
 
     return (
         <motion.section
@@ -131,12 +134,19 @@ export default function About() {
             </div>
 
             {/* Selfie */}
-            <div className="mt-32 flex flex-col items-end">
-                <img src="/images/IMG_2849_BW.jpg" alt="" className="w-full -scale-x-100 object-cover md:w-1/2" />
+            <div className={`mt-32 flex flex-col items-end ${styles.padding.section}`}>
+                <motion.img
+                    ref={selfieRef}
+                    src="/images/selfie.webp"
+                    alt="Me on a cloudy, sunny day."
+                    className="max-h-64 w-full -scale-x-100 object-cover md:max-h-128 md:w-1/2"
+                    loading="lazy"
+                    style={{ objectPosition: selfie_objectPosition }}
+                />
 
                 <SplitWord
                     text="I design and develop custom websites, landing pages, and UI systems that help brands feel modern and communicate clearly. My work blends minimal design with strong structure, tight typography, and high functionality."
-                    className={`md:w-1/2 md:tracking-wide ${styles.padding.section}`}
+                    className="md:w-1/2 md:tracking-wide"
                     duration={0.3}
                     stagger={0.01}
                 />

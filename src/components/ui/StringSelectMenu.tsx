@@ -125,7 +125,11 @@ export default function StringSelectMenu({
                         <HugeiconsIcon
                             icon={ArrowDown01Icon}
                             color="currentColor"
-                            className="absolute top-1/2 left-1/2 size-7 -translate-x-1/2 -translate-y-1/2 stroke-[1.5px] transition-all duration-300 group-hover:size-8"
+                            className={cn(
+                                "absolute top-1/2 left-1/2 size-7 -translate-x-1/2 -translate-y-1/2 stroke-[1.5px] transition-all duration-300 group-hover:size-8",
+                                isOpen && "text-accent-secondary",
+                                isOpen && (direction === "top" ? "-rotate-180" : "rotate-180")
+                            )}
                         />
                     </div>
                 </button>

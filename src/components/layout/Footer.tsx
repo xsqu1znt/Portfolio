@@ -1,14 +1,12 @@
 "use client";
 
+import { styles } from "@/constants/styles";
+import { cn } from "@/lib/utils";
 import { useLenis } from "lenis/react";
 import { ArrowUp, ArrowUpRight } from "lucide-react";
 import { ComponentProps } from "react";
-import { MarqueeItem, VelocityMarquee } from "../ui/VelocityMarquee";
-import { cn } from "@/lib/utils";
-import { styles } from "@/constants/styles";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowDown02Icon, ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import Snowfall from "react-snowfall";
+import { MarqueeItem, VelocityMarquee } from "../ui/VelocityMarquee";
 
 interface ArrowLinkProps {
     label: string;
@@ -243,13 +241,7 @@ export default function Footer() {
                             className="group absolute top-6 right-0 flex cursor-pointer items-center gap-1 font-serif"
                             onClick={scrollToTop}
                         >
-                            {/* <ArrowUp className="text-accent-secondary ease-overshoot size-10 rotate-45 stroke-[1.5px] transition-all duration-300 group-hover:rotate-0" /> */}
-                            <HugeiconsIcon
-                                icon={ArrowRight02Icon}
-                                size={48}
-                                color="currentColor"
-                                className="text-accent-secondary ease-overshoot -rotate-45 transition-transform duration-300 group-hover:-rotate-90"
-                            />
+                            <ArrowUp className="text-accent-secondary ease-overshoot size-10 rotate-45 stroke-[1.5px] transition-all duration-300 group-hover:rotate-0" />
                         </button>
                     </div>
 

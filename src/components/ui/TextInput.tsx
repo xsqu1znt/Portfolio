@@ -10,6 +10,7 @@ export default function TextInput({
     type,
     label,
     placeholder,
+    value,
     setValue,
     area,
     className,
@@ -18,6 +19,7 @@ export default function TextInput({
     type?: HTMLInputTypeAttribute;
     label: string;
     placeholder: string;
+    value?: string;
     setValue?: (value: string) => void;
     area?: boolean;
 }) {
@@ -36,6 +38,7 @@ export default function TextInput({
     };
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        e.preventDefault();
         setValue?.(e.target.value);
     };
 
@@ -44,6 +47,7 @@ export default function TextInput({
             ref={inputRef as any}
             onFocus={handleFocus}
             id={id}
+            value={value}
             placeholder={placeholder}
             onChange={handleChange}
             className="placeholder:text-foreground-dim bg-foreground-dimmer focus:border-foreground-primary min-h-40 w-full resize-none rounded-md border border-white/5 px-4 py-3 transition-all duration-300 outline-none focus:min-h-52"
@@ -56,6 +60,7 @@ export default function TextInput({
             onFocus={handleFocus}
             type={type || "text"}
             id={id}
+            value={value}
             placeholder={placeholder}
             onChange={handleChange}
             className="placeholder:text-foreground-dim bg-foreground-dimmer focus:border-foreground-primary w-full rounded-md border border-white/5 px-4 py-3 transition-all duration-300 outline-none"
