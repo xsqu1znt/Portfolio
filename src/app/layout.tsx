@@ -47,22 +47,22 @@ export const metadata: Metadata = {
         "Creative Marketing",
         "Copywriting"
     ],
-    authors: [{ name: "Gunique G.", url: "https://guniqueg.vercel.app" }],
+    authors: [{ name: "Gunique G.", url: "https://guniqueg.com" }],
     creator: "Gunique G.",
     publisher: "Gunique G.",
-    metadataBase: new URL("https://guniqueg.vercel.app"),
+    metadataBase: new URL("https://guniqueg.com"),
     openGraph: {
-        title: "Gunique G. | Full Stack Web Developer & Designer",
+        title: "Gunique G. | Web Developer & Designer",
         description:
             "Modern, functional, high-converting websites built for startups and creators. I design and develop custom websites, landing pages, and UI/UX that help brands stand out.",
-        url: "https://guniqueg.vercel.app",
-        siteName: "Gunique G. | Portfolio",
+        url: "https://guniqueg.com",
+        siteName: "Gunique G. | Web Developer & Designer",
         images: [
             {
-                url: "/og.png", // replace with your actual OG image
+                url: "/og.png",
                 width: 1200,
                 height: 630,
-                alt: "Gunique G. | Portfolio"
+                alt: "Gunique G. | Web Developer & Designer"
             }
         ],
         locale: "en_US",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
             "Modern, functional, high-converting websites built for startups and creators. I design and develop custom websites, landing pages, and UI/UX that help brands stand out.",
         images: ["/twitter.png"],
         creator: "@bygunique",
-        site: "https://guniqueg.vercel.app"
+        site: "https://guniqueg.com"
     },
     icons: {
         icon: "/icon.png",
