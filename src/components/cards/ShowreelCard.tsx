@@ -44,7 +44,7 @@ export default function ShowreelCard({
             <img
                 src={src}
                 alt="showreel-card"
-                className="group-hover:outline-foreground-dim object-cover object-top outline outline-transparent transition-all duration-300 group-hover:outline-offset-8"
+                className="group-hover:outline-foreground-dim rounded-md object-cover object-top outline outline-transparent transition-all duration-300 group-hover:outline-offset-8"
             />
 
             <div
