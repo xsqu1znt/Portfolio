@@ -1,14 +1,13 @@
+import Footer from "@/components/layout/Footer";
 import Grain from "@/components/layout/Grain";
-import Navbar from "@/components/layout/Navbar";
+import NavProvider from "@/components/provider/NavProvider";
 import ReactLenis from "lenis/react";
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import { ToastContainer } from "react-toastify";
 import "./animations.css";
 import "./clipping.css";
 import "./globals.css";
-import NavProvider from "@/components/provider/NavProvider";
-import Footer from "@/components/layout/Footer";
-import { ToastContainer } from "react-toastify";
 
 const font_sans = localFont({
     variable: "--font-sans",
@@ -55,12 +54,12 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Gunique G. | Full Stack Web Developer & Designer",
         description:
-            "Modern, fast, and high-converting websites built for startups and business with clean design. I design and develop custom websites, landing pages, and UI/UX that help brands stand out.",
+            "Modern, functional, high-converting websites built for startups and creators. I design and develop custom websites, landing pages, and UI/UX that help brands stand out.",
         url: "https://guniqueg.vercel.app",
         siteName: "Gunique G. | Portfolio",
         images: [
             {
-                url: "/og-image.jpg", // replace with your actual OG image
+                url: "/og.png", // replace with your actual OG image
                 width: 1200,
                 height: 630,
                 alt: "Gunique G. | Portfolio"
@@ -72,15 +71,16 @@ export const metadata: Metadata = {
     twitter: {
         card: "summary_large_image",
         title: "Gunique G. | Web Developer & Designer",
-        description: "Modern websites, landing pages, and design systems — built with precision and performance.",
-        images: ["/og-image.jpg"],
+        description:
+            "Modern, functional, high-converting websites built for startups and creators. I design and develop custom websites, landing pages, and UI/UX that help brands stand out.",
+        images: ["/twitter.png"],
         creator: "@bygunique",
         site: "https://guniqueg.vercel.app"
     },
     icons: {
-        icon: "/favicon.ico",
-        shortcut: "/favicon.ico",
-        apple: "/apple-touch-icon.png"
+        icon: "/icon.png",
+        shortcut: "/icon.png",
+        apple: "/icon-apple.png"
     }
 };
 
