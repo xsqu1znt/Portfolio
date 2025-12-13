@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-    --white: #eee8e0;
+    --white: #f6fbff;
     --black: #000000;
     --accent: #69acf7;
     --accent-secondary: #f7b569;
@@ -10,13 +10,13 @@
     --background-secondary: #131313;
     --foreground-primary: var(--white);
     --foreground-dim: #e4e6ef80;
-    --foreground-dimmer: #eee8e015;
+    --foreground-dimmer: #93939315;
 }
 
 @custom-variant light (&:is(.light, .light *));
 .light {
     --background-primary: var(--white);
-    --background-secondary: #dfdad3;
+    --background-secondary: #e0dfde;
     --foreground-primary: var(--black);
     --foreground-dim: #434340;
     --foreground-dimmer: #bababa;

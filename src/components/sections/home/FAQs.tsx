@@ -58,7 +58,7 @@ function FAQAccordion({
                 style={{ gridTemplateRows: collapsed ? "0fr" : "1fr" }}
             >
                 <div
-                    className={`min-h-0 overflow-hidden transition-all duration-300 ${collapsed ? "-translate-x-8 blur-xs" : "translate-x-0"}`}
+                    className={`min-h-0 overflow-hidden transition-all duration-300 ${collapsed ? "-translate-x-8" : "translate-x-0"}`}
                 >
                     <p className={`inline-block text-sm leading-relaxed tracking-wide`}>{answer}</p>
                 </div>
