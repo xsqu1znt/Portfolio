@@ -5,6 +5,7 @@ import ReactLenis from "lenis/react";
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { ToastContainer } from "react-toastify";
+import Script from "next/script";
 import "./animations.css";
 import "./clipping.css";
 import "./globals.css";
@@ -105,6 +106,8 @@ export default function RootLayout({
                 <Footer />
                 <ToastContainer position="bottom-right" theme="dark" />
             </body>
+
+            <Script src="https://scripts.simpleanalyticscdn.com/latest.js" data-collect-dnt="true" />
         </html>
     );
 }
