@@ -206,7 +206,7 @@ function ContactServiceForm({ className }: ComponentProps<"div">) {
                     area
                     id="input-message"
                     label="MESSAGE (optional)"
-                    placeholder="Hello. I'm interested in one of your finest landing pages for my business."
+                    placeholder="Hello. I’m interested in one of your finest landing pages for my business."
                     onTextChange={setMessage}
                     disabled={isSubmitting}
                 />
@@ -238,7 +238,7 @@ export default function Contact() {
             <div className="absolute top-0 left-1/2 -z-10 size-280 -translate-x-1/2 -translate-y-1/2 rounded-full bg-linear-to-b from-white to-transparent opacity-10 blur-[250px] md:opacity-25" />
 
             <div className="mt-50 flex flex-col gap-10">
-                <SectionHeader title="LET'S TALK" description="Your business deserves attention." className="items-center" />
+                <SectionHeader title="LET’S TALK" description="Your business deserves attention." className="items-center" />
                 <ContactServiceForm className="max-w-[500px]" />
             </div>
         </section>

@@ -20,7 +20,7 @@ export const testimonials: TestimonialCardProps[] = [
         flagSrc: "/icons/flags/germany.webp",
         name: "Spielgott",
         handle: "spielgott_",
-        review: "Communication was clear, professional, and friendly throughout. They understood exactly what I needed and even suggested helpful improvements. It's clear they care about quality and know what they're doing. Highly recommended!"
+        review: "Communication was clear, professional, and friendly throughout. They understood exactly what I needed and even suggested helpful improvements. It’s clear they care about quality and know what they’re doing. Highly recommended!"
     },
     {
         imageSrc: "/images/clients/theghostcompany.webp",
@@ -29,7 +29,7 @@ export const testimonials: TestimonialCardProps[] = [
         handle: "theghostcompany",
         review: [
             "Did more than what was asked just to make what I needed a little more convenient.",
-            "Again, the easiest/nicest person I've dealt with and makes things as easy as possible for their clients!"
+            "Again, the easiest/nicest person I’ve dealt with and makes things as easy as possible for their clients!"
         ]
     }
 ];

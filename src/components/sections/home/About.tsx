@@ -100,7 +100,7 @@ export default function About() {
         <motion.section
             ref={sectionRef}
             id="about"
-            className="section light bg-background-secondary gap-0 px-0 pt-16 pb-50"
+            className="section light bg-white gap-0 px-0 pt-16 pb-50"
             style={{
                 scale: sectionScale,
                 borderTopLeftRadius: sectionBorderRadius,
@@ -126,7 +126,7 @@ export default function About() {
 
                 {/* Paragraph */}
                 <SplitWord
-                    text="I'm Gunique — a web developer & designer building functional interfaces, modern branding, and fast, scalable websites for startups & creators."
+                    text="I’m Gunique — a web developer & designer building functional interfaces, modern branding, and fast, scalable websites for startups & creators."
                     className="text-lg md:max-w-1/2 md:tracking-wide"
                     duration={0.3}
                     stagger={0.03}
@@ -154,7 +154,7 @@ export default function About() {
 
             {/* Numbers */}
             <div
-                className={`bg-background-primary mt-32 grid grid-cols-1 gap-12 rounded-3xl py-16 md:grid-cols-2 md:rounded-4xl ${styles.padding.section}`}
+                className={`mt-32 grid grid-cols-1 gap-12 py-16 md:grid-cols-2 ${styles.padding.section}`}
             >
                 <div className="font-sans font-semibold">
                     {/* Header/Desktop */}
@@ -165,7 +165,7 @@ export default function About() {
                         whileInView={{ opacity: 1, translateX: 0 }}
                         transition={{ duration: 0.5, ease: easings.fluidInOut }}
                     >
-                        The numbers don't lie.
+                        The numbers don’t lie.
                     </motion.h3>
 
                     {/* Header/Mobile */}
@@ -176,7 +176,7 @@ export default function About() {
                         whileInView={{ opacity: 1, translateX: 0 }}
                         transition={{ duration: 0.5, ease: easings.fluidInOut }}
                     >
-                        <FitText>The numbers don't lie.</FitText>
+                        <FitText>The numbers don’t lie.</FitText>
                     </motion.div>
                 </div>
 
@@ -219,7 +219,7 @@ export default function About() {
                             <AnimateNumber value={14} direction="up" />+
                         </span>
                         <span className="text-foreground-dim">
-                            Amazing people I've worked with. Each project unique, every need fulfilled.
+                            Amazing people I’ve worked with. Each project unique, every need fulfilled.
                         </span>
                     </motion.div>
                 </div>
@@ -240,7 +240,7 @@ export default function About() {
                     </div>
                     <p className="leading-relaxed md:tracking-wide">
                         I follow a simple process that keeps everything predictable: Research. Wireframes. Design.
-                        Development. Launch. Support. Clients always know what stage we're in and what's coming next.
+                        Development. Launch. Support. Clients always know what stage we’re in and what’s coming next.
                     </p>
                 </motion.div>
 
@@ -256,7 +256,7 @@ export default function About() {
                         <span className="text-foreground-dim font-sans text-xl md:text-2xl">MY EXPERIENCE</span>
                     </div>
                     <p className="leading-relaxed md:tracking-wide">
-                        I've spent 5+ years freelancing, building trust, relationships, and projects across websites, bots,
+                        I’ve spent 5+ years freelancing, building trust, relationships, and projects across websites, bots,
                         and custom tools. I handle both design and development, so projects stay consistent from start to
                         finish.
                     </p>
@@ -267,7 +267,7 @@ export default function About() {
             {/* <div className={`mt-32 flex flex-col gap-2 ${styles.padding.section}`}>
                 <div className="grid grid-cols-1">
                     <SplitWord
-                        text="I'm the founder of a web development agency called Octave Labs. My team focuses on building modern, fast, and functional websites. As well as bold, memorable branding for your audience."
+                        text="I’m the founder of a web development agency called Octave Labs. My team focuses on building modern, fast, and functional websites. As well as bold, memorable branding for your audience."
                         className="leading-relaxed md:tracking-wide"
                         duration={0.3}
                         stagger={0.03}

@@ -258,7 +258,10 @@ export default function Navbar({ isDarkMode, setNavOpen }: { isDarkMode?: boolea
                     )}
                     onClick={scrollToTop}
                 >
-                    GG
+                    <div className="flex flex-col overflow-hidden relative">
+                        <span className={cn("inline-block text-white transition-transform duration-300 ease-in-out leading-5", (isDarkMode || isMenuOpen) && "-translate-y-full")}>GG</span>
+                        <span className={cn("inline-block absolute text-black transition-transform duration-300 ease-in-out leading-5", !(isDarkMode || isMenuOpen) && "translate-y-full")}>GG</span>
+                    </div>
                 </button>
 
                 {/* Links */}

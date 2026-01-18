@@ -171,7 +171,7 @@ export default function Footer() {
             </div>
 
             {/* Header */}
-            <h3 className={`${styles.padding.section} text-center text-2xl`}>Building spaces that inspire connections.</h3>
+            <h3 className={`${styles.padding.section} text-center text-2xl`}><span className="font-sans">“</span>Building spaces that inspire connections.<span className="font-sans">”</span></h3>
 
             {/* Footer */}
             <footer className="mt-8 flex flex-col">

@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+br::selection {
+    background-color: transparent !important;
+}
+
+*::selection {
+    background-color: var(--accent) !important;
+    color: var(--background-primary) !important;
+}
+
 :root {
     --white: #f6fbff;
     --black: #000000;
@@ -16,7 +25,7 @@
 @custom-variant light (&:is(.light, .light *));
 .light {
     --background-primary: var(--white);
-    --background-secondary: #e0dfde;
+    --background-secondary: #EAEEF2;
     --foreground-primary: var(--black);
     --foreground-dim: #434340;
     --foreground-dimmer: #bababa;

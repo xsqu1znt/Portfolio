@@ -1,7 +1,7 @@
 export const FAQ = [
     {
         question: "How long can a project take?",
-        answer: "Most projects take 2-6 weeks depending on scope. I'll give you a clear timeline before we start."
+        answer: "Most projects take 2-6 weeks depending on scope. I’ll give you a clear timeline before we start."
     },
     {
         question: "Do you offer payment plans?",
@@ -32,11 +32,11 @@ export const FAQ = [
         answer: "Yes. I build with SEO best practices, and my marketing specialist can take it even further with strategy, copy, and analytics."
     },
     {
-        question: "What's included in your website pricing?",
+        question: "What’s included in your website pricing?",
         answer: "Every project includes design, development, mobile optimization, and SEO setup. Extra features like integrations, or advanced CMS can be requested as add-ons."
     },
     {
         question: "How do we get started?",
-        answer: "Just hit the CONTACT button, tell me a little about your project, and I'll follow up with next steps and a quote ASAP."
+        answer: "Just hit the CONTACT button, tell me a little about your project, and I’ll follow up with next steps and a quote ASAP."
     }
 ];
