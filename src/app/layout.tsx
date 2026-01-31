@@ -48,15 +48,15 @@ export const metadata: Metadata = {
         "Creative Marketing",
         "Copywriting"
     ],
-    authors: [{ name: "Gunique G.", url: "https://guniqueg-test.vercel.app" }],
+    authors: [{ name: "Gunique G.", url: "https://guniqueg.com" }],
     creator: "Gunique G.",
     publisher: "Gunique G.",
-    metadataBase: new URL("https://guniqueg-test.vercel.app"),
+    metadataBase: new URL("https://guniqueg.com"),
     openGraph: {
         title: "Gunique G. | Portfolio",
         description:
             "Modern, functional, high-converting websites built for startups and creators. I design and develop custom websites, landing pages, and UI/UX that help brands stand out.",
-        url: "https://guniqueg-test.vercel.app",
+        url: "https://guniqueg.com",
         siteName: "Gunique G. | Web Developer & Designer",
         images: [
             {
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
             "Modern, functional, high-converting websites built for startups and creators. I design and develop custom websites, landing pages, and UI/UX that help brands stand out.",
         images: ["/twitter.png"],
         creator: "@bygunique",
-        site: "https://guniqueg-test.vercel.app"
+        site: "https://guniqueg.com"
     },
     icons: {
         icon: "/icon.png",
@@ -100,10 +100,9 @@ export default function RootLayout({
                 className={`no-scrollbar relative overflow-x-hidden antialiased ${font_sans.variable} ${font_serif.variable} ${font_special.variable}`}
             >
                 <ReactLenis root options={{ overscroll: false, lerp: 0.15, allowNestedScroll: true }} />
-                <Grain />
-                {/* <SmoothCursor /> */}
                 <NavProvider>{children}</NavProvider>
                 <Footer />
+                <Grain />
                 <ToastContainer position="bottom-right" theme="dark" />
             </body>
 

@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
 const CAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY;
 
-function ContactServiceForm({ className }: ComponentProps<"div">) {
+function ContactForm({ className }: ComponentProps<"div">) {
     const recaptchaRef = useRef<ReCAPTCHA>(null);
 
     const [projectType, setProjectType] = useState("Landing Page");
@@ -239,7 +239,7 @@ export default function Contact() {
 
             <div className="mt-50 flex flex-col gap-10">
                 <SectionHeader title="LET’S TALK" description="Your business deserves attention." className="items-center" />
-                <ContactServiceForm className="max-w-[500px]" />
+                <ContactForm className="max-w-[500px]" />
             </div>
         </section>
     );
