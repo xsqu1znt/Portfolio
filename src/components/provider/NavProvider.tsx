@@ -17,7 +17,7 @@ export default function NavProvider({ children }: { children: React.ReactNode })
 
     return (
         <>
-            <Navbar isDarkMode={isNavDarkMode} setNavOpen={setNavOpen} />
+            <Navbar dark={isNavDarkMode} setNavOpen={setNavOpen} />
             <NavContext.Provider value={{ setNavOpen, setNavDarkMode }}>
                 <motion.div
                     className=""

@@ -5,9 +5,9 @@ import { styles } from "@/constants/styles";
 import { cn } from "@/lib/utils";
 import { useLenis } from "lenis/react";
 import { ChevronRight } from "lucide-react";
-import { motion } from "motion/react";
-import { ComponentProps, useEffect, useState } from "react";
-import Button from "../ui/Button";
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import { ComponentProps, useEffect, useRef, useState } from "react";
+import { StaggerText } from "../ui/StaggerText";
 
 function NavLink({
     label,
@@ -40,26 +40,6 @@ function NavLink({
                 )}
             />
         </a>
-    );
-}
-
-function NavLinkList({
-    links,
-    isDarkMode,
-    className
-}: {
-    links: { label: string; sectionId: string }[];
-    isDarkMode?: boolean;
-    className?: string;
-}) {
-    return (
-        <ul className={cn("flex items-center gap-6 place-self-center font-sans text-lg font-medium", className)}>
-            {links.map(link => (
-                <li key={link.sectionId}>
-                    <NavLink {...link} isDarkMode={isDarkMode} />
-                </li>
-            ))}
-        </ul>
     );
 }
 
@@ -118,39 +98,59 @@ function NavMenuToggle({ isMenuOpen, toggleMenuOpen }: { isMenuOpen: boolean; to
     );
 }
 
-export default function Navbar({ isDarkMode, setNavOpen }: { isDarkMode?: boolean; setNavOpen: (prev: boolean) => void }) {
+export default function Navbar({ dark, setNavOpen }: { dark?: boolean; setNavOpen: (prev: boolean) => void }) {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [scrollDirection, setScrollDirection] = useState<"up" | "down">("up");
+
+    const { scrollY } = useScroll();
     const lenis = useLenis();
 
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    useMotionValueEvent(scrollY, "change", latest => {
+        const previous = scrollY.getPrevious() ?? 0;
+        const direction = latest > previous ? "down" : "up";
 
-    useEffect(() => {
-        if (isMenuOpen) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "";
+        if (direction !== scrollDirection) {
+            setScrollDirection(direction);
         }
+    });
 
-        setNavOpen(isMenuOpen);
-
-        return () => {
-            document.body.style.overflow = "";
-        };
-    }, [isMenuOpen]);
-
-    const scrollToTop = () => {
-        lenis?.scrollTo(0, { duration: 2 });
-    };
-
-    const scrollToContact = () => {
-        lenis?.scrollTo("#contact", { duration: 2 });
+    const scrollTo = (target: string | number, toggleMenu?: boolean) => {
+        if (toggleMenu) setIsMenuOpen(prev => !prev);
+        lenis?.scrollTo(target, { duration: 2 });
     };
 
     const handleMenuOpenToggle = () => {
         setIsMenuOpen(prev => !prev);
     };
 
+    const navLinks = [
+        { label: "Work", sectionId: "work" },
+        { label: "Services", sectionId: "services" },
+        { label: "About", sectionId: "about" }
+    ];
+
     return (
-        <div className={cn("fixed top-0 left-0 z-50 w-full transition-colors duration-300", isDarkMode && "text-black")}>
+        <motion.div
+            initial={{ padding: "1rem 2rem", borderColor: "transparent", color: "var(--white)" }}
+            animate={{
+                padding: scrollDirection === "down" ? "0.25rem 2rem" : `1rem 2rem`,
+                borderColor: scrollDirection === "down" ? "oklab(1 0 0 / 0.05)" : "transparent",
+                color: dark ? "var(--black)" : "var(--white)",
+                transition: { type: "spring", stiffness: 250, damping: 20 }
+            }}
+            className="fixed top-0 left-0 z-50 w-full border-b"
+        >
+            {/* Progressive Blur */}
+            <div
+                className="pointer-events-none absolute inset-0 -z-10"
+                style={{
+                    backdropFilter: "blur(24px) hue-rotate(15deg)",
+                    WebkitBackdropFilter: "blur(24px) hue-rotate(15deg)",
+                    maskImage: "linear-gradient(to bottom, black, transparent)",
+                    WebkitMaskImage: "linear-gradient(to bottom, black, transparent)"
+                }}
+            />
+
             {/* Mobile Menu */}
             <div className={cn("light fixed top-0 left-0 h-dvh w-full", !isMenuOpen && "pointer-events-none")}>
                 <motion.div
@@ -245,57 +245,83 @@ export default function Navbar({ isDarkMode, setNavOpen }: { isDarkMode?: boolea
 
             {/* Navbar */}
             <motion.header
-                className={`relative grid grid-cols-2 lg:grid-cols-3 ${styles.padding.navbar}`}
                 initial={{ opacity: 0, translateY: "-200%" }}
                 animate={{ opacity: 1, translateY: 0 }}
                 transition={{ delay: 0.75, duration: 1, ease: easings.fluidInOut }}
+                className="relative grid h-full w-full grid-cols-2 lg:grid-cols-3"
             >
                 {/* Logo */}
-                <button
-                    className={cn(
-                        "w-fit cursor-pointer place-content-center font-sans text-2xl font-semibold transition-opacity duration-300 hover:opacity-75",
-                        isMenuOpen && "text-black"
-                    )}
-                    onClick={scrollToTop}
-                >
-                    <div className="flex flex-col overflow-hidden relative">
-                        <span className={cn("inline-block text-white transition-transform duration-300 ease-in-out leading-5", (isDarkMode || isMenuOpen) && "-translate-y-full")}>GG</span>
-                        <span className={cn("inline-block absolute text-black transition-transform duration-300 ease-in-out leading-5", !(isDarkMode || isMenuOpen) && "translate-y-full")}>GG</span>
-                    </div>
-                </button>
+                <StaggerText
+                    $text="GG"
+                    // $tappedVariant={{ color: "var(--accent)", transition: { duration: 0.1 } }}
+                    $stagger={0.02}
+                    $hoveredVariant={{ opacity: 0.75 }}
+                    className="-my-2 cursor-pointer self-center py-2 font-sans text-2xl font-semibold"
+                    onClick={() => scrollTo(0)}
+                />
 
                 {/* Links */}
-                <NavLinkList
-                    className="hidden lg:flex"
-                    links={[
-                        { label: "Work", sectionId: "work" },
-                        { label: "Services", sectionId: "services" },
-                        { label: "About", sectionId: "about" }
-                    ]}
-                    isDarkMode={isDarkMode}
-                />
+                <div className="hidden items-center gap-6 place-self-center lg:flex">
+                    {navLinks.map((link, i) => (
+                        <StaggerText
+                            key={i}
+                            $text={link.label}
+                            $hoveredVariant={{ opacity: 0.75 }}
+                            $stagger={0.005}
+                            className="-my-2 cursor-pointer py-2 font-sans text-lg font-medium"
+                            onClick={() => scrollTo(`#${link.sectionId}`)}
+                        />
+                    ))}
+                </div>
 
                 {/* CTA/Contact */}
                 <div className="hidden items-center justify-end lg:flex">
-                    <Button variant="transparent" label="CONTACT" className="p-0" onClick={scrollToContact}>
-                        <ChevronRight className="size-5 stroke-[1.5px]" />
-                    </Button>
+                    <motion.button
+                        initial="initial"
+                        whileHover="hovered"
+                        whileTap="tapped"
+                        className="flex w-fit cursor-pointer items-center rounded-md px-4 py-2 font-sans font-medium"
+                        onClick={() => scrollTo("#contact")}
+                    >
+                        <motion.div
+                            variants={{
+                                initial: { opacity: 0, x: -7, scale: 0.75 },
+                                hovered: {
+                                    opacity: 1,
+                                    x: 5,
+                                    scale: 1,
+                                    transition: { type: "spring", stiffness: 500, damping: 20 }
+                                },
+                                tapped: {
+                                    x: 7,
+                                    transition: { type: "spring", stiffness: 500, damping: 10 }
+                                }
+                            }}
+                            className="-ml-4"
+                        >
+                            <ChevronRight className="size-5 stroke-[1.5px]" />
+                        </motion.div>
+
+                        <motion.div
+                            variants={{
+                                initial: {},
+                                hovered: {
+                                    x: 7,
+                                    transition: { delay: 0.04, type: "spring", stiffness: 500, damping: 20 }
+                                }
+                            }}
+                            className="mr-1"
+                        >
+                            CONTACT
+                        </motion.div>
+                    </motion.button>
                 </div>
 
                 {/* Hamburger Menu */}
                 <div className="flex items-center justify-end lg:hidden">
                     <NavMenuToggle isMenuOpen={isMenuOpen} toggleMenuOpen={handleMenuOpenToggle} />
                 </div>
-
-                {/* Progressive blur */}
-                <div
-                    className="absolute inset-0 -z-10 h-full w-full backdrop-blur-xl backdrop-hue-rotate-15"
-                    style={{
-                        maskImage: "linear-gradient(to bottom, black, transparent)",
-                        WebkitMaskImage: "linear-gradient(to bottom, black, transparent)"
-                    }}
-                />
             </motion.header>
-        </div>
+        </motion.div>
     );
 }

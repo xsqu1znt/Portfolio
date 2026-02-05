@@ -71,3 +71,28 @@ br::selection {
 .no-scrollbar::-webkit-scrollbar {
     display: none;
 }
+
+.blur-fade {
+    position: relative;
+    isolation: isolate;
+    background: transparent !important;
+}
+.blur-fade::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -10;
+    height: 100%;
+    width: 100%;
+
+    /* Backdrop Effects */
+    backdrop-filter: blur(24px) hue-rotate(15deg);
+    -webkit-backdrop-filter: blur(24px) hue-rotate(15deg);
+
+    /* Masking for the fade effect */
+    mask-image: linear-gradient(to bottom, black, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent);
+
+    /* Prevents the blur from "bleeding" outside the navbar edges */
+    pointer-events: none;
+}
