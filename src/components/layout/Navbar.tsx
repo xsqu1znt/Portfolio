@@ -9,7 +9,7 @@ import { useCallback, useEffect, useState } from "react";
 import { StaggerText } from "../ui/StaggerText";
 
 const SPRING_TRANSITION: Transition = { type: "spring", stiffness: 250, damping: 20 };
-const SPRING2_TRANSITION: Transition = { type: "spring", stiffness: 200, damping: 10 };
+const SPRING2_TRANSITION: Transition = { type: "spring", stiffness: 200, damping: 20 };
 const STAGGER_LINK = 0.05;
 const DELAY_LINK = 0.3;
 
@@ -185,7 +185,7 @@ export default function Navbar({ dark, setNavOpen }: { dark?: boolean; setNavOpe
                             initial="initial"
                             whileHover="hovered"
                             whileTap="tapped"
-                            className="flex w-fit cursor-pointer items-center rounded-md py-2 font-sans font-medium"
+                            className="hidden w-fit cursor-pointer items-center rounded-md py-2 font-sans font-medium md:flex"
                             onClick={() => scrollTo("#contact")}
                         >
                             <motion.span
