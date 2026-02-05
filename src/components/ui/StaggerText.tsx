@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { motion, Transition, Variants, HTMLMotionProps } from "motion/react";
+import { motion, Transition, Variants, HTMLMotionProps, stagger } from "motion/react";
 
 interface Props extends HTMLMotionProps<"div"> {
     $text: string;
@@ -7,6 +7,7 @@ interface Props extends HTMLMotionProps<"div"> {
     $lineHeight?: string;
     /** @defaultValue 0.01 */
     $stagger?: number;
+    $initialDelay?: number;
     $hoveredVariant?: Variants["hovered"];
     $tappedVariant?: Variants["tapped"];
 }
@@ -19,8 +20,9 @@ const SPRING_TRANSITION: Transition = {
 
 export function StaggerText({
     $text,
-    $lineHeight = "1.2rem",
+    $lineHeight = "1.3rem",
     $stagger = 0.01,
+    $initialDelay,
     $hoveredVariant,
     $tappedVariant,
     className,
@@ -31,7 +33,7 @@ export function StaggerText({
         initial: {},
         hovered: {
             transition: {
-                staggerChildren: $stagger
+                delayChildren: stagger($stagger, { startDelay: $initialDelay })
             }
         },
         tapped: {}
