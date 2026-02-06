@@ -10,7 +10,7 @@ export interface ServiceCardProps {
     };
 
     extraDetails: string[];
-    handleContact?: () => void;
+    handleContact?: (e: React.MouseEvent) => void;
 }
 
 export interface TestimonialCardProps {

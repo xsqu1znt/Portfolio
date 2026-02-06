@@ -7,6 +7,7 @@ import { ChevronRight } from "lucide-react";
 import { motion, stagger, Transition, useMotionValueEvent, useScroll, Variants } from "motion/react";
 import { useCallback, useEffect, useState } from "react";
 import { StaggerText } from "../ui/StaggerText";
+import { useUserClient } from "@/hooks/useUserClient";
 
 const SPRING_TRANSITION: Transition = { type: "spring", stiffness: 250, damping: 20 };
 const SPRING2_TRANSITION: Transition = { type: "spring", stiffness: 200, damping: 20 };
@@ -50,6 +51,7 @@ export default function Navbar({ dark, setNavOpen }: { dark?: boolean; setNavOpe
 
     const { scrollY } = useScroll();
     const lenis = useLenis();
+    const { isMobile } = useUserClient();
 
     useMotionValueEvent(scrollY, "change", latest => {
         const previous = scrollY.getPrevious() ?? 0;
@@ -80,8 +82,8 @@ export default function Navbar({ dark, setNavOpen }: { dark?: boolean; setNavOpe
         <motion.div
             initial={false}
             animate={{
-                padding: isScrolled ? "0.25rem 2rem" : `1rem 2rem`,
-                borderColor: isScrolled ? "oklab(1 0 0 / 0.05)" : "transparent",
+                padding: isScrolled && !isMobile ? "0.25rem 2rem" : `1rem 2rem`,
+                borderColor: isScrolled && !isMobile ? "oklab(1 0 0 / 0.05)" : "transparent",
                 color: dark || menuOpen ? "var(--black)" : "var(--white)"
             }}
             transition={SPRING_TRANSITION}
