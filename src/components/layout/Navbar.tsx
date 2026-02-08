@@ -72,8 +72,23 @@ export default function Navbar({ dark, setNavOpen }: { dark?: boolean; setNavOpe
     }, [setNavOpen]);
 
     const scrollTo = (target: string | number, shouldCloseMenu = false) => {
-        if (shouldCloseMenu) toggleMenu();
-        lenis?.scrollTo(target, { duration: 2 });
+        if (shouldCloseMenu) {
+            // 1. Close the menu first
+            setMenuOpen(false);
+
+            lenis?.start();
+
+            // 2. Smallest possible delay to allow NavProvider's
+            // useEffect to run lenis.start()
+            requestAnimationFrame(() => {
+                lenis?.scrollTo(target, {
+                    duration: 1.5 // Slightly faster for mobile
+                    // easing: t => Math.min(1, 1.001 * Math.pow(2, -10 * t) + 1) // Smooth out
+                });
+            });
+        } else {
+            lenis?.scrollTo(target, { duration: 1.5 });
+        }
     };
 
     const isScrolled = scrollDirection === "down" && !menuOpen;
@@ -106,7 +121,9 @@ export default function Navbar({ dark, setNavOpen }: { dark?: boolean; setNavOpe
                     variants={MENU_VARIANTS}
                     initial="closed"
                     animate={menuOpen ? "open" : "closed"}
-                    className="bg-background-primary light h-full w-full flex-col place-content-center overflow-x-hidden overflow-y-auto px-4 py-16 md:px-8"
+                    className="bg-background-primary light h-full w-full touch-auto flex-col place-content-center overflow-x-hidden overflow-y-auto px-4 py-16 lg:px-8"
+                    style={{ overscrollBehavior: "contain" }}
+                    data-lenis-prevent
                 >
                     {/* Main Section Links */}
                     <ul className="flex flex-col gap-6">
@@ -152,7 +169,7 @@ export default function Navbar({ dark, setNavOpen }: { dark?: boolean; setNavOpe
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.75, duration: 1, ease: easings.fluidInOut }}
-                className={cn("relative grid w-full items-center", menuOpen ? "grid-cols-2" : "grid-cols-2 md:grid-cols-3")}
+                className={cn("relative grid w-full items-center", menuOpen ? "grid-cols-2" : "grid-cols-2 lg:grid-cols-3")}
             >
                 {/* Logo */}
                 <StaggerText
@@ -165,7 +182,7 @@ export default function Navbar({ dark, setNavOpen }: { dark?: boolean; setNavOpe
 
                 {/* Links */}
                 {!menuOpen && (
-                    <ul className="hidden items-center gap-8 justify-self-center md:flex">
+                    <ul className="hidden items-center gap-8 justify-self-center lg:flex">
                         {NAV_LINKS.filter(l => !l.hidden).map(l => (
                             <li key={l.sectionId}>
                                 <StaggerText
@@ -187,7 +204,7 @@ export default function Navbar({ dark, setNavOpen }: { dark?: boolean; setNavOpe
                             initial="initial"
                             whileHover="hovered"
                             whileTap="tapped"
-                            className="hidden w-fit cursor-pointer items-center rounded-md py-2 font-sans font-medium md:flex"
+                            className="hidden w-fit cursor-pointer items-center rounded-md py-2 font-sans font-medium lg:flex"
                             onClick={() => scrollTo("#contact")}
                         >
                             <motion.span
@@ -229,7 +246,7 @@ export default function Navbar({ dark, setNavOpen }: { dark?: boolean; setNavOpe
                         initial="initial"
                         whileHover="hovered"
                         whileTap="tapped"
-                        className="relative z-50 size-7 cursor-pointer md:hidden"
+                        className="relative z-50 size-7 cursor-pointer lg:hidden"
                         onClick={toggleMenu}
                     >
                         <motion.div className="relative h-full w-full">

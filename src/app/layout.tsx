@@ -105,8 +105,6 @@ export default function RootLayout({
                 <Grain />
                 <ToastContainer position="bottom-right" theme="dark" />
             </body>
-
-            <Script src="https://scripts.simpleanalyticscdn.com/latest.js" data-collect-dnt="true" />
         </html>
     );
 }

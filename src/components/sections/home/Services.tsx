@@ -12,8 +12,6 @@ import { styles } from "@/constants/styles";
 import { cn } from "@/lib/utils";
 import { ServiceCardProps } from "@/types/shared";
 
-// --- Sub-components (Logic Optimized, Styles Untouched) ---
-
 function ServiceHeader({ index, title, expanded }: ServiceCardProps & { expanded: boolean }) {
     return (
         <div className="flex justify-between">
@@ -26,7 +24,7 @@ function ServiceHeader({ index, title, expanded }: ServiceCardProps & { expanded
 
             <div
                 className={cn(
-                    "ease-overshoot relative -mx-1 -my-2 size-4 p-4 transition-all duration-500",
+                    "ease-overshoot relative -mx-1 -my-2 size-4 p-4 transition-all duration-300",
                     expanded && "rotate-180"
                 )}
             >
@@ -51,8 +49,8 @@ function ServiceDescriptionDefault({ description, subtext, price, expanded }: Se
     return (
         <div
             className={cn(
-                "flex transform flex-col gap-3 transition-all duration-500",
-                expanded && "-translate-x-8 opacity-0"
+                "flex transform flex-col gap-3 transition-all duration-300",
+                expanded && "translate-x-8 opacity-0"
             )}
         >
             <div>
@@ -98,8 +96,8 @@ function ServiceExtra({ extraDetails, handleContact, expanded }: ServiceCardProp
     return (
         <div
             className={cn(
-                "flex h-full translate-x-8 transform flex-col justify-between gap-3 opacity-0 transition-all duration-500",
-                expanded && "translate-x-0 opacity-100"
+                "flex h-full transform flex-col justify-between gap-3 opacity-0 transition-all duration-300",
+                expanded && "opacity-100"
             )}
         >
             <ul className="flex list-inside list-disc flex-col gap-1">
@@ -122,7 +120,7 @@ const ServiceCard = memo((props: ServiceCardProps) => {
 
     const scrollToContact = (e: React.MouseEvent) => {
         e.stopPropagation(); // Prevent toggling the accordion when clicking the button
-        lenis?.scrollTo("#contact", { duration: 2 });
+        lenis?.scrollTo("#contact", { duration: 1.5 });
     };
 
     const finalProps = {
@@ -138,11 +136,11 @@ const ServiceCard = memo((props: ServiceCardProps) => {
         >
             <ServiceHeader {...finalProps} expanded={expanded} />
 
-            <div className="grid grid-rows-[1fr] overflow-hidden transition-[grid-template-rows] duration-500">
+            <div className="grid grid-rows-[1fr] overflow-hidden transition-[grid-template-rows] duration-300">
                 {/* Grid-based Accordion: Zero-motion until clicked */}
                 <div
                     className={cn(
-                        "grid transition-[grid-template-rows] duration-500 ease-in-out",
+                        "grid transition-[grid-template-rows] duration-300 ease-in-out",
                         expanded ? "grid-rows-[0fr]" : "grid-rows-[1fr]"
                     )}
                 >
@@ -152,7 +150,7 @@ const ServiceCard = memo((props: ServiceCardProps) => {
                 </div>
                 <div
                     className={cn(
-                        "grid transition-[grid-template-rows] duration-500 ease-in-out",
+                        "grid transition-[grid-template-rows] duration-300 ease-in-out",
                         expanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                     )}
                 >

@@ -1,16 +1,14 @@
 "use client";
 
 import SectionHeader from "@/components/layout/SectionHeader";
-import { useNavContext } from "@/components/provider/NavProvider";
 import { FAQ } from "@/constants/faqs";
 import { styles } from "@/constants/styles";
 import { cn } from "@/lib/utils";
 import { ArrowDown01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { useMotionValueEvent, useScroll } from "motion/react";
+import { useLenis } from "lenis/react";
 import { ComponentProps, memo, useCallback, useRef, useState } from "react";
 
-// 1. Memoized Accordion Item
 const FAQAccordion = memo(
     ({
         index,
@@ -27,23 +25,25 @@ const FAQAccordion = memo(
         collapsed?: boolean;
         onToggleItem: (index: number) => void;
     }) => {
-        // Handle click without creating a new function in the parent render cycle
         const handleClick = () => onToggleItem(index - 1);
 
         return (
             <div
                 {...props}
                 className={cn(
-                    `group flex w-full flex-col gap-2 border border-transparent px-4 py-4.5 font-serif transition-all duration-300 will-change-transform ${
-                        collapsed
-                            ? ""
-                            : "border-foreground-dimmer rounded-md bg-[#eef5fb] shadow-[0_0_32px_2px] shadow-black/5"
-                    }`,
+                    // FIX 1: Transition ONLY specific properties. Avoid 'all'.
+                    // FIX 2: Removed will-change-transform from here.
+                    `group flex w-full flex-col gap-2 border border-transparent px-4 py-4.5 font-serif transition-[background-color,border-color] duration-300`,
+                    !collapsed && "border-foreground-dimmer rounded-md bg-[#eef5fb]",
                     className
                 )}
+                // FIX 3: Move the shadow to a static style or only apply when NOT animating to prevent lag
+                style={{
+                    backfaceVisibility: "hidden" // GPU Hint
+                }}
             >
                 <button
-                    className="flex cursor-pointer justify-between gap-1 outline-hidden"
+                    className="flex cursor-pointer justify-between gap-1 outline-none"
                     onClick={handleClick}
                     aria-expanded={!collapsed}
                 >
@@ -55,24 +55,27 @@ const FAQAccordion = memo(
                     <div className="relative size-7">
                         <HugeiconsIcon
                             icon={ArrowDown01Icon}
-                            color="currentColor"
-                            className={`absolute top-1/2 left-1/2 size-7 -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 group-hover:size-8 ${
+                            className={cn(
+                                "absolute top-1/2 left-1/2 size-7 -translate-x-1/2 -translate-y-1/2 stroke-[1.5px] transition-transform duration-300",
                                 collapsed ? "text-foreground-dim" : "text-accent-secondary rotate-180"
-                            } stroke-[1.5px]`}
+                            )}
                         />
                     </div>
                 </button>
 
                 <div
-                    className="grid overflow-hidden transition-[grid-template-rows] duration-300 ease-in-out"
+                    className="grid overflow-hidden transition-[grid-template-rows] duration-300"
                     style={{ gridTemplateRows: collapsed ? "0fr" : "1fr" }}
                 >
-                    <div
-                        className={`min-h-0 overflow-hidden transition-all duration-300 ${
-                            collapsed ? "-translate-x-8 opacity-0" : "translate-x-0 opacity-100"
-                        } will-change-[transform,opacity]`}
-                    >
-                        <p className="inline-block pt-2 text-sm leading-relaxed tracking-wide">{answer}</p>
+                    <div className="min-h-0 overflow-hidden">
+                        <div
+                            className={cn(
+                                "pt-2 transition-all duration-300",
+                                collapsed ? "translate-x-4 opacity-0" : "translate-x-0 opacity-100"
+                            )}
+                        >
+                            <p className="text-sm leading-relaxed tracking-wide">{answer}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -84,21 +87,31 @@ FAQAccordion.displayName = "FAQAccordion";
 
 function FAQList() {
     const [opened, setOpened] = useState<number | null>(0);
+    const lenis = useLenis();
 
-    // Optimized: Stable reference for the toggle function
-    const toggleCollapse = useCallback((index: number) => {
-        setOpened(prev => (prev === index ? null : index));
-    }, []);
+    const toggleCollapse = useCallback(
+        (index: number) => {
+            setOpened(prev => (prev === index ? null : index));
+
+            // Force immediate resize
+            lenis?.resize();
+
+            // Re-sync after animation ends
+            setTimeout(() => lenis?.resize(), 310);
+        },
+        [lenis]
+    );
 
     return (
         <div className="mt-16 flex flex-col">
             {FAQ.map((faq, i) => (
                 <FAQAccordion
-                    key={`faq-${i}`} // Use a more descriptive key
+                    key={`faq-${i}`}
                     index={i + 1}
                     {...faq}
                     collapsed={i !== opened}
                     onToggleItem={toggleCollapse}
+                    // Fixed logic: i+1 matches the 1-based index
                     className={opened !== i + 1 && i + 1 !== FAQ.length ? "border-b-foreground-dimmer" : ""}
                 />
             ))}
@@ -108,11 +121,12 @@ function FAQList() {
 
 export default function FAQs() {
     return (
-        <section id="faq" className="section light bg-white px-0">
+        <section id="faq" className="section light overflow-hidden bg-white px-0">
             <div
-                className={`border-foreground-dimmer relative h-full w-full py-16 ${styles.padding.section} clip-path-services bg-[#e5ecf3]`}
+                className={`border-foreground-dimmer relative h-full w-full py-16 ${styles.padding.section} clip-path-services isolation-auto bg-[#e5ecf3]`}
+                style={{ transform: "translate3d(0,0,0)" }}
             >
-                <div className="absolute top-0 left-0 h-12 w-full bg-linear-to-b from-black/2 to-transparent" />
+                <div className="pointer-events-none absolute top-0 left-0 h-12 w-full bg-linear-to-b from-black/2 to-transparent" />
                 <SectionHeader title="FAQs" description="Let's keep it simple." />
                 <FAQList />
             </div>

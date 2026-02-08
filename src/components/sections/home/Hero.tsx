@@ -99,7 +99,7 @@ export default function Hero() {
     const { isLandscape } = useOrientation();
 
     const scrollToWork = () => {
-        lenis?.scrollTo("#work", { duration: 2 });
+        lenis?.scrollTo("#work", { duration: 1.5 });
     };
 
     return (

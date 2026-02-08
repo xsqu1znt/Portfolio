@@ -37,7 +37,6 @@ function ContactForm({ className }: ComponentProps<"div">) {
         setIsSubmitting(true);
         setFieldsRequired(false);
 
-        // Construct form data
         const formData = { projectType, name, email, timeline, budget, message };
 
         try {
@@ -46,7 +45,6 @@ function ContactForm({ className }: ComponentProps<"div">) {
                 throw new Error("Server configuration error: 0x1337");
             }
 
-            /* Check if the user has completed the reCAPTCHA */
             const recaptchaToken = recaptchaRef.current?.getValue();
 
             if (!recaptchaToken) {
@@ -54,30 +52,25 @@ function ContactForm({ className }: ComponentProps<"div">) {
                 return;
             }
 
-            // Check if the form data is valid
             if (!formData.projectType || !formData.name || !formData.email || !formData.timeline || !formData.budget) {
                 setFieldsRequired(true);
                 toast.error("Please fill in all required fields.");
                 return;
             }
 
-            // Verify the reCAPTCHA
             const recaptchaRes = await fetch("/api/captcha", {
                 method: "POST",
                 body: JSON.stringify({ token: recaptchaToken })
             });
 
-            // Parse the response
             const recaptchaData = await recaptchaRes.json();
 
-            // Check if the reCAPTCHA was successful
             if (!recaptchaRes.ok || !recaptchaData?.success) {
                 recaptchaRef.current?.reset();
                 toast.error("Failed to verify reCAPTCHA. Please try again.");
                 return;
             }
 
-            // Format the message
             const formattedMessage = [
                 "--- Project Details ---",
                 `Project Type: ${formData.projectType || "N/A"}`,
@@ -92,7 +85,6 @@ function ContactForm({ className }: ComponentProps<"div">) {
                 `${formData.message || "No specific message provided."}`
             ].join("\n");
 
-            // Construct the Web3Forms payload
             const web3formsPayload = {
                 access_key: WEB3FORMS_KEY,
                 subject: `New Inquiry from ${formData.name}`,
@@ -100,7 +92,6 @@ function ContactForm({ className }: ComponentProps<"div">) {
                 email: formData.email
             };
 
-            // Send the request
             const web3formsRes = await fetch("https://api.web3forms.com/submit", {
                 method: "POST",
                 headers: { "Content-Type": "application/json", Accept: "application/json" },
@@ -126,17 +117,16 @@ function ContactForm({ className }: ComponentProps<"div">) {
     return (
         <div
             className={cn(
-                "bg-background-secondary relative w-full overflow-hidden rounded-md border-2 border-white/5 p-6 transition-colors duration-300",
+                "bg-background-secondary relative w-full overflow-hidden rounded-md border-2 border-white/5 p-6",
+                // Removed transition-colors to prevent the browser from listening for layout-triggered paint updates
                 className
             )}
         >
             <div className="no-scrollbar z-10 flex h-full max-h-screen w-full flex-col gap-8 overflow-y-auto">
-                {/* Header */}
                 <div className="w-full">
                     <h2 className="font-sans text-2xl font-semibold">Contact</h2>
                 </div>
 
-                {/* Field/Project Type */}
                 <StringSelectMenu
                     id="ssm-project-type"
                     label="PROJECT TYPE*"
@@ -158,7 +148,6 @@ function ContactForm({ className }: ComponentProps<"div">) {
                     disabled={isSubmitting}
                 />
 
-                {/* Grouped */}
                 <div className="flex w-full gap-6">
                     <TextInput
                         id="input-name"
@@ -180,7 +169,6 @@ function ContactForm({ className }: ComponentProps<"div">) {
                     />
                 </div>
 
-                {/* Grouped */}
                 <div className="flex w-full gap-6">
                     <TextInput
                         id="input-timeline"
@@ -201,7 +189,6 @@ function ContactForm({ className }: ComponentProps<"div">) {
                     />
                 </div>
 
-                {/* Field/Message */}
                 <TextInput
                     area
                     id="input-message"
@@ -212,10 +199,8 @@ function ContactForm({ className }: ComponentProps<"div">) {
                 />
 
                 <div className="flex flex-col items-center gap-4">
-                    {/* Captcha */}
                     {CAPTCHA_SITE_KEY && <ReCAPTCHA ref={recaptchaRef} sitekey={CAPTCHA_SITE_KEY} />}
 
-                    {/* Button/Submit */}
                     <Button
                         label="SEND INQUIRY"
                         variant="accent"
@@ -235,7 +220,18 @@ function ContactForm({ className }: ComponentProps<"div">) {
 export default function Contact() {
     return (
         <section id="contact" className="section relative items-center overflow-hidden">
-            <div className="absolute top-0 left-1/2 -z-10 size-280 -translate-x-1/2 -translate-y-1/2 rounded-full bg-linear-to-b from-white to-transparent opacity-10 blur-[250px] md:opacity-25" />
+            {/* FIX: GPU ISOLATION 
+                We use translate3d and will-change to force this massive blur onto its own GPU layer.
+                We also use content-visibility: auto to ensure the browser ignores it when not on screen.
+            */}
+            <div
+                className="pointer-events-none absolute top-0 left-1/2 -z-10 size-280 rounded-full bg-linear-to-b from-white to-transparent opacity-10 blur-[250px] md:opacity-25"
+                style={{
+                    transform: "translate3d(-50%, -50%, 0)",
+                    willChange: "transform",
+                    contentVisibility: "auto"
+                }}
+            />
 
             <div className="mt-50 flex flex-col gap-10">
                 <SectionHeader title="LET’S TALK" description="Your business deserves attention." className="items-center" />

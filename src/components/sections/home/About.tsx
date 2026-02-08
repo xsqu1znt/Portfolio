@@ -108,13 +108,7 @@ export default function About() {
     const selfiePos = useTransform(selfieScroll, [0, 1], ["0% 0%", "0% 100%"]);
 
     return (
-        <motion.section
-            id="about"
-            className="section light gap-0 bg-white px-0 pt-16 pb-50"
-            style={{
-                willChange: "transform, border-radius"
-            }}
-        >
+        <section id="about" className="section light gap-0 bg-white px-0 pt-16 pb-50">
             {/* Header */}
             <div className={`flex h-fit flex-col gap-4 ${styles.padding.section}`}>
                 <div className="overflow-hidden font-sans font-black tracking-tight md:w-1/2">
@@ -203,6 +197,6 @@ export default function About() {
                     text="I’ve spent 5+ years freelancing, building trust, relationships, and projects across websites, bots, and custom tools. I handle both design and development, so projects stay consistent from start to finish."
                 />
             </div>
-        </motion.section>
+        </section>
     );
 }

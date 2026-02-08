@@ -21,18 +21,9 @@ export default function Home() {
 
         const observer = new IntersectionObserver(
             ([entry]) => {
-                // entry.isIntersecting is now based on a 1px trigger line
                 setNavDarkMode(entry.isIntersecting);
             },
-            {
-                /* The Margin Magic:
-               -80px top: Triggers when the section hits the bottom of an 80px navbar.
-               0px right/left.
-               -100% bottom: This "squishes" the detection zone into a 1px line at the top.
-            */
-                rootMargin: "-80px 0px -100% 0px",
-                threshold: 0
-            }
+            { rootMargin: "-80px 0px -100% 0px", threshold: 0 }
         );
 
         observer.observe(target);
