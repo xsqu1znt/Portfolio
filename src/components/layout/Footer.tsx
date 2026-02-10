@@ -234,7 +234,7 @@ export default function Footer() {
                                         iconSize: 6,
                                         translateXMargin: 7
                                     },
-                                    { label: "Octave Labs", href: "https://octavelabs.com", accent: true }
+                                    { label: "Octave Labs", href: "https://octavelabs.io", accent: true }
                                 ]}
                             />
                         </LabeledList>

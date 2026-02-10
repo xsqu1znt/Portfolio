@@ -4,7 +4,6 @@ import NavProvider from "@/components/provider/NavProvider";
 import ReactLenis from "lenis/react";
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import Script from "next/script";
 import { ToastContainer } from "react-toastify";
 import "./animations.css";
 import "./clipping.css";

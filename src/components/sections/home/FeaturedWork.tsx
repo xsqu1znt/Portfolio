@@ -9,6 +9,8 @@ import { memo, useRef } from "react";
 const ShowreelCard = memo(
     ({
         src,
+        href,
+        github,
         title,
         description,
         date,
@@ -18,6 +20,8 @@ const ShowreelCard = memo(
         style
     }: {
         src: string;
+        href?: string;
+        github?: string;
         title?: string;
         description?: string;
         date?: string;
@@ -52,7 +56,7 @@ const ShowreelCard = memo(
                     src={src}
                     alt={title}
                     loading="lazy"
-                    className="group-hover:border-foreground-dim relative z-0 w-full rounded-md border border-transparent object-cover object-top transition-all duration-500 group-hover:scale-101"
+                    className="group-hover:border-foreground-dim relative z-0 w-full rounded-md border-2 border-transparent object-cover object-top transition-all duration-300 group-hover:scale-101"
                 />
 
                 <div
@@ -61,10 +65,38 @@ const ShowreelCard = memo(
                         alignment === "right" && "flex-row-reverse"
                     )}
                 >
-                    <h3 className="font-sans font-medium tracking-tight uppercase">{title}</h3>
-                    <span className="text-foreground-dim font-normal opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        ({date})
-                    </span>
+                    <h3 className="inline-block font-sans font-medium tracking-tight whitespace-nowrap uppercase">
+                        {title}
+                    </h3>
+
+                    <div
+                        className={cn(
+                            "text-foreground-dim flex items-center gap-2 font-normal opacity-0 transition-opacity duration-300 group-hover:opacity-100",
+                            alignment === "right" && "flex-row-reverse"
+                        )}
+                    >
+                        {github && (
+                            <a
+                                href={github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-foreground-primary transition-colors duration-300"
+                            >
+                                [ Github ]
+                            </a>
+                        )}
+                        {href && (
+                            <a
+                                href={href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-foreground-primary transition-colors duration-300"
+                            >
+                                [ Live Demo ]
+                            </a>
+                        )}
+                        <span>({date})</span>
+                    </div>
                 </div>
                 <p className="text-foreground-dim mt-1 font-serif text-[0.7rem] leading-relaxed tracking-wide md:text-xs">
                     {description}
@@ -131,23 +163,27 @@ export default function FeaturedWork() {
             <div className="relative z-10 mt-[60vh] flex w-full flex-col gap-40 md:gap-80">
                 <ShowreelCard
                     innerRef={firstCardRef}
-                    src="/images/showreel/001.png"
-                    title="[AGENCY] Octave Labs"
-                    description="Lorem ipsum dolor sit amut."
-                    date="25/01"
+                    src="/featured/featured_avatarList.webp"
+                    href="https://guniqueg-concept-avatar-list.vercel.app"
+                    github="https://github.com/xsqu1znt/SNIPPET-FluidMorphingAvatarList"
+                    title="3 State Avatar Card"
+                    description="An avatar card that morphs between 3 states for a fun user experience. Built using React.js, TailwindCSS, and Motion."
+                    date="26/01"
                 />
                 <ShowreelCard
-                    src="/images/showreel/001.png"
+                    src="/featured/featured_businessCard.webp"
+                    href="https://guniqueg-concept-business-card.vercel.app"
+                    github="https://github.com/xsqu1znt/SNIPPET-OctaveLabsBusinessCard"
                     alignment="right"
-                    title="[AGENCY] Octave Labs"
-                    description="Lorem ipsum dolor sit amut."
-                    date="25/01"
+                    title="Link-In-Bio Business Card"
+                    description="A link-in-bio style business card that links to your socials, and morphs into the landing page of your business. Built using React.js, TailwindCSS, and Motion."
+                    date="26/01"
                 />
                 <ShowreelCard
-                    src="/images/showreel/001.png"
-                    title="[AGENCY] Octave Labs"
-                    description="Lorem ipsum dolor sit amut."
-                    date="25/01"
+                    src="/featured/featured_trusteeDashboard.webp"
+                    title="Trustee Dashboard"
+                    description="A client requested a dashboard for a Discord moderation bot I built for them. Using Next.js and TailwindCSS I built a clean and functional dashboard."
+                    date="25/10"
                 />
             </div>
         </section>
