@@ -164,7 +164,7 @@ export default function FeaturedWork() {
                 <ShowreelCard
                     innerRef={firstCardRef}
                     src="/featured/featured_avatarList.webp"
-                    href="https://guniqueg-concept-avatar-list.vercel.app"
+                    href="https://concepts.guniqueg.com/avatar-list"
                     github="https://github.com/xsqu1znt/SNIPPET-FluidMorphingAvatarList"
                     title="3 State Avatar Card"
                     description="An avatar card that morphs between 3 states for a fun user experience. Built using React.js, TailwindCSS, and Motion."
@@ -172,7 +172,7 @@ export default function FeaturedWork() {
                 />
                 <ShowreelCard
                     src="/featured/featured_businessCard.webp"
-                    href="https://guniqueg-concept-business-card.vercel.app"
+                    href="https://concepts.guniqueg.com/business-card"
                     github="https://github.com/xsqu1znt/SNIPPET-OctaveLabsBusinessCard"
                     alignment="right"
                     title="Link-In-Bio Business Card"
