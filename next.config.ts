@@ -7,24 +7,24 @@ const nextConfig: NextConfig = {
             {
                 has: [{ type: "header", key: "x-forwarded-host", value: "concepts.guniqueg.com" }],
                 source: "/business-card",
-                destination: "guniqueg-concept-business-card.vercel.app"
+                destination: "https://guniqueg-concept-business-card.vercel.app"
             },
             {
                 has: [{ type: "header", key: "x-forwarded-host", value: "concepts.guniqueg.com" }],
                 source: "/business-card/:path*",
-                destination: "guniqueg-concept-business-card.vercel.app/:path*"
+                destination: "https://guniqueg-concept-business-card.vercel.app/:path*"
             },
 
             // Avatar List Concept
             {
                 has: [{ type: "header", key: "x-forwarded-host", value: "concepts.guniqueg.com" }],
                 source: "/avatar-list",
-                destination: "guniqueg-concept-avatar-list.vercel.app"
+                destination: "https://guniqueg-concept-avatar-list.vercel.app"
             },
             {
                 has: [{ type: "header", key: "x-forwarded-host", value: "concepts.guniqueg.com" }],
                 source: "/avatar-list/:path*",
-                destination: "guniqueg-concept-avatar-list.vercel.app/:path*"
+                destination: "https://guniqueg-concept-avatar-list.vercel.app/:path*"
             }
         ];
     }
